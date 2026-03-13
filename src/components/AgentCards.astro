@@ -86,404 +86,386 @@ const agents = [
   },
 ];
 ---
-
-<section id="agents" class="agents-section section">
+<section class="agents-section" id="agents">
   <div class="container">
-    <div class="agents-header" data-reveal>
-      <h2 class="agents-title">
-        <span class="title-line">Top</span>
-        <span class="title-line title-highlight">Trading Agents</span>
-      </h2>
-    </div>
-
-    <div class="agents-items">
-      {agents.map((agent, i) => (
-        <div class="agent-card" data-reveal style={`--item-bg: #0a0a0a; --item-accent: ${agent.color}`}>
-          <div class="agent-card-inner">
-            <div class="agent-top">
-              <div class="agent-avatar-block">
-                <div class="agent-icon">
-                  <svg viewBox="0 0 60 60" fill="none">
-                    <polygon points="30,5 55,50 5,50" stroke={agent.color} stroke-width="2" fill="none" opacity="0.5"/>
-                    <polygon points="30,15 45,45 15,45" fill={agent.color} opacity="0.2"/>
-                  </svg>
-                </div>
-                <p class="agent-num">{String(i + 1).padStart(2, '0')}</p>
-              </div>
-              <div class="agent-info">
-                <div class="agent-name-row">
-                  <h3 class="agent-name">{agent.name}</h3>
-                  <div class="strategy-badge" style={`background: ${agent.color}18; color: ${agent.color}; border: 1px solid ${agent.color}40`}>{agent.strategy}</div>
-                </div>
-                <!-- Sparkline Chart -->
-                <div class="agent-chart">
-                  <svg class="sparkline" viewBox={`0 0 ${(agent.sparkline.length - 1) * 20} 50`} preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id={`grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color={agent.color} stop-opacity="0.4"/>
-                        <stop offset="100%" stop-color={agent.color} stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
-                    <path
-                      d={`M0,${50 - (agent.sparkline[0] / 140) * 50} ${agent.sparkline.map((v, idx) => `L${idx * 20},${50 - (v / 140) * 50}`).join(' ')} L${(agent.sparkline.length - 1) * 20},50 L0,50 Z`}
-                      fill={`url(#grad-${i})`}
-                    />
-                    <polyline
-                      points={agent.sparkline.map((v, idx) => `${idx * 20},${50 - (v / 140) * 50}`).join(' ')}
-                      fill="none"
-                      stroke={agent.color}
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                    <circle
-                      cx={(agent.sparkline.length - 1) * 20}
-                      cy={50 - (agent.sparkline[agent.sparkline.length - 1] / 140) * 50}
-                      r="3"
-                      fill={agent.color}
-                    />
-                  </svg>
-                </div>
-                <!-- Stats Row -->
-                <div class="agent-stats">
-                  <div class="stat-mini">
-                    <div class="stat-mini-label">TVL</div>
-                    <div class="stat-mini-value mono">{agent.tvl}</div>
-                  </div>
-                  <div class="stat-mini">
-                    <div class="stat-mini-label">Win Rate</div>
-                    <div class="stat-mini-value mono" style={`color:${agent.color}`}>{agent.winRate}</div>
-                  </div>
-                  <div class="stat-mini">
-                    <div class="stat-mini-label">Trades</div>
-                    <div class="stat-mini-value mono">{agent.trades}</div>
-                  </div>
-                </div>
-                <!-- Token Info -->
-                <div class="agent-token">
-                  <span class="token-badge mono">{agent.token}</span>
-                  <span class="token-price mono" style={`color:${agent.color}`}>{agent.tokenPrice}</span>
-                </div>
-              </div>
-            </div>
-            <div class="agent-pnl">
-              <div class={`pnl-value mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnl7d}</div>
-              <div class={`pnl-pct mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnlPct}</div>
-            </div>
-            <div class="agent-symbol">
-              <svg viewBox="0 0 100 100" fill="none">
-                <polygon points="50,5 95,95 5,95" stroke={agent.color} stroke-width="1.5" fill="none"/>
-                <polygon points="50,25 75,75 25,75" fill={agent.color} opacity="0.15"/>
-              </svg>
-            </div>
-          </div>
+    <div class="agents-header">
+      <div>
+        <div class="reveal-mask">
+          <div class="section-label reveal-text" id="agents-label">Live Performance</div>
         </div>
-      ))}
+        <div class="reveal-mask">
+          <h2 class="section-title reveal-text" id="agents-title">Top Trading Agents</h2>
+        </div>
+      </div>
+      <a href="#deploy" class="btn btn-secondary agents-cta-btn">View All Agents</a>
+    </div>
+  </div>
+
+  <!-- Card stack scroll section -->
+  <div class="agents-stack-outer" id="agents-stack-outer">
+    <div class="agents-stack-inner" id="agents-stack-inner">
+      <!-- Stack of cards -->
+      <div class="agents-stack" id="agents-stack">
+        {agents.map((agent, i) => (
+          <div
+            class="agent-card-stack card"
+            data-index={i}
+            style={`--agent-color: ${agent.color}; --card-index: ${i};`}
+          >
+            <!-- Scroll progress bar at top of each card -->
+            <div class="card-progress-bar">
+              <div class="card-progress-fill" id={`card-progress-${i}`}></div>
+            </div>
+
+            <!-- Card content -->
+            <div class="agent-card-content">
+              <!-- Header -->
+              <div class="agent-header">
+                <div class="agent-avatar" style={`background: linear-gradient(135deg, ${agent.color}33, ${agent.color}11); border: 1px solid ${agent.color}55`}>
+                  <span class="agent-initial mono">{agent.name[0]}</span>
+                </div>
+                <div class="agent-info">
+                  <div class="agent-name">{agent.name}</div>
+                  <div class="badge" style={`background: ${agent.color}18; color: ${agent.color}; border: 1px solid ${agent.color}40; font-size: 0.65rem`}>{agent.strategy}</div>
+                </div>
+                <div class="agent-pnl">
+                  <div class={`pnl-value mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnl7d}</div>
+                  <div class={`pnl-pct mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnlPct}</div>
+                </div>
+              </div>
+
+              <!-- Sparkline -->
+              <div class="agent-chart">
+                <svg class="sparkline" viewBox={`0 0 ${(agent.sparkline.length - 1) * 20} 50`} preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id={`grad-${i}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color={agent.color} stop-opacity="0.4"/>
+                      <stop offset="100%" stop-color={agent.color} stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d={`M0,${50 - (agent.sparkline[0] / 140) * 50} ${agent.sparkline.map((v, idx) => `L${idx * 20},${50 - (v / 140) * 50}`).join(' ')} L${(agent.sparkline.length - 1) * 20},50 L0,50 Z`}
+                    fill={`url(#grad-${i})`}
+                  />
+                  <polyline
+                    points={agent.sparkline.map((v, idx) => `${idx * 20},${50 - (v / 140) * 50}`).join(' ')}
+                    fill="none"
+                    stroke={agent.color}
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                  <circle
+                    cx={(agent.sparkline.length - 1) * 20}
+                    cy={50 - (agent.sparkline[agent.sparkline.length - 1] / 140) * 50}
+                    r="3"
+                    fill={agent.color}
+                  />
+                </svg>
+              </div>
+
+              <!-- Stats row -->
+              <div class="agent-stats">
+                <div class="stat-mini">
+                  <div class="stat-mini-label">TVL</div>
+                  <div class="stat-mini-value mono">{agent.tvl}</div>
+                </div>
+                <div class="stat-mini">
+                  <div class="stat-mini-label">Win Rate</div>
+                  <div class="stat-mini-value mono" style={`color:${agent.color}`}>{agent.winRate}</div>
+                </div>
+                <div class="stat-mini">
+                  <div class="stat-mini-label">Trades</div>
+                  <div class="stat-mini-value mono">{agent.trades}</div>
+                </div>
+              </div>
+
+              <!-- Token info -->
+              <div class="agent-token">
+                <span class="token-badge mono">{agent.token}</span>
+                <span class="token-price mono" style={`color:${agent.color}`}>{agent.tokenPrice}</span>
+              </div>
+            </div>
+
+            <!-- Card number indicator -->
+            <div class="card-num-indicator mono">{i + 1}/{agents.length}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .agents-section {
-    background: var(--color-neutral-950);
-    padding-top: var(--padding-3xl);
-    padding-bottom: var(--padding-3xl);
+    padding-top: var(--space-3xl);
+    background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-surface) 100%);
+    overflow: hidden;
   }
 
   .agents-header {
-    margin-bottom: var(--gap-2xl);
-  }
-
-  .agents-title {
-    font-size: var(--text-8xl);
-    line-height: var(--leading-normal);
-    font-weight: 400;
-    text-transform: uppercase;
-  }
-
-  .title-line {
-    display: block;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .title-highlight {
-    color: var(--color-white);
-  }
-
-  .agents-items {
     display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .agent-card {
-    background: var(--item-bg, #0a0a0a);
-    border: 1px solid rgba(255,255,255,0.05);
-    position: relative;
-    overflow: hidden;
-    clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      100% calc(100% - 30px),
-      calc(100% - 30px) 100%,
-      0% 100%
-    );
-    transition: background 0.3s ease;
-  }
-
-  .agent-card:hover {
-    border-color: rgba(255,255,255,0.1);
-  }
-
-  .agent-card-inner {
-    display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    padding: var(--padding-xl) var(--padding-2xl);
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .agents-cta-btn {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* ─── Card stack section ── */
+  .agents-stack-outer {
+    height: 600vh; /* Scroll distance for 6 cards */
     position: relative;
-    z-index: 2;
-    gap: var(--gap-xl);
   }
 
-  .agent-top {
+  .agents-stack-inner {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     display: flex;
-    flex: 1;
-    gap: var(--gap-xl);
-  }
-
-  .agent-avatar-block {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    flex-shrink: 0;
-    width: clamp(3rem, 5vw, 5rem);
+    justify-content: center;
   }
 
-  .agent-icon {
-    width: clamp(2.5rem, 4vw, 4rem);
-    height: clamp(2.5rem, 4vw, 4rem);
+  .agents-stack {
+    position: relative;
+    width: min(480px, 90vw);
+    height: 480px;
   }
 
-  .agent-icon svg {
+  /* Individual stacked cards */
+  .agent-card-stack {
+    position: absolute;
     width: 100%;
+    top: 0;
+    left: 0;
+    border-color: var(--bg-border);
+    will-change: transform, opacity;
+    transform-origin: top center;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .card-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.05);
+    z-index: 10;
+  }
+
+  .card-progress-fill {
     height: 100%;
+    width: 0%;
+    background: var(--agent-color);
+    box-shadow: 0 0 8px var(--agent-color);
+    transition: width 0.05s linear;
   }
 
-  .agent-num {
-    font-size: var(--text-xs);
-    color: var(--color-neutral-400);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-  }
-
-  .agent-info {
-    flex: 1;
+  .agent-card-content {
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
   }
 
-  .agent-name-row {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .agent-name {
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--color-white);
-  }
-
-  .strategy-badge {
+  .card-num-indicator {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
     font-size: 0.65rem;
-    font-weight: 600;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    text-transform: uppercase;
+    color: var(--text-muted);
     letter-spacing: 0.05em;
   }
 
+  /* Agent card internals */
+  .agent-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .agent-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .agent-initial {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--agent-color);
+  }
+
+  .agent-info { flex: 1; }
+  .agent-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .agent-pnl { text-align: right; }
+  .pnl-value { font-size: 1rem; font-weight: 700; }
+  .pnl-pct { font-size: 0.75rem; opacity: 0.8; }
+
   .agent-chart {
-    width: 100%;
-    height: 60px;
     border-radius: 6px;
     overflow: hidden;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.2);
+    height: 52px;
   }
 
-  .sparkline {
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
+  .sparkline { width: 100%; height: 100%; display: block; }
 
   .agent-stats {
-    display: flex;
-    gap: 1rem;
-    max-width: 320px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 
   .stat-mini {
     text-align: center;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.25rem;
     background: rgba(0,0,0,0.3);
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.06);
-    flex: 1;
+    border: 1px solid var(--bg-border);
   }
 
   .stat-mini-label {
-    font-size: 0.6rem;
-    color: var(--color-neutral-500);
+    font-size: 0.65rem;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 0.2rem;
   }
 
-  .stat-mini-value {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--color-white);
-  }
+  .stat-mini-value { font-size: 0.8rem; font-weight: 600; color: var(--text-primary); }
 
   .agent-token {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding: 0.4rem 0.6rem;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
     background: rgba(0,0,0,0.3);
     border-radius: 6px;
-    border: 1px solid rgba(255,255,255,0.06);
-    max-width: fit-content;
+    border: 1px solid var(--bg-border);
   }
 
-  .token-badge {
-    font-size: 0.7rem;
-    color: var(--color-neutral-400);
-    font-weight: 600;
-    letter-spacing: 0.08em;
-  }
-
-  .token-price {
-    font-size: 0.8rem;
-    font-weight: 700;
-  }
-
-  .agent-pnl {
-    text-align: right;
-    flex-shrink: 0;
-    padding-top: 0.5rem;
-  }
-
-  .pnl-value {
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-  }
-
-  .pnl-value.positive { color: #00FF88; }
-  .pnl-value.negative { color: #FF394A; }
-
-  .pnl-pct {
-    font-size: var(--text-sm);
-    opacity: 0.8;
-  }
-
-  .pnl-pct.positive { color: #00FF88; }
-  .pnl-pct.negative { color: #FF394A; }
-
-  .agent-symbol {
-    width: clamp(4rem, 7vw, 7rem);
-    height: clamp(4rem, 7vw, 7rem);
-    flex-shrink: 0;
-    opacity: 0.4;
-    transition: opacity 0.3s ease;
-  }
-
-  .agent-symbol svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  .agent-card:hover .agent-symbol {
-    opacity: 0.7;
-  }
-
-  /* Item accent glow */
-  .agent-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 40%;
-    height: 100%;
-    background: radial-gradient(ellipse at 80% 50%, var(--item-accent, transparent) 0%, transparent 70%);
-    opacity: 0.08;
-    pointer-events: none;
-  }
-
-  @media (max-width: 1024px) {
-    .agent-card-inner {
-      padding: var(--padding-xl);
-    }
-
-    .agent-top {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .agent-avatar-block {
-      flex-direction: row;
-      width: auto;
-    }
-
-    .agent-symbol {
-      display: none;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .agent-card-inner {
-      flex-direction: column;
-      padding: 1.5rem;
-    }
-
-    .agent-name {
-      font-size: var(--text-2xl);
-    }
-
-    .agent-stats {
-      flex-wrap: wrap;
-    }
-  }
+  .token-badge { font-size: 0.7rem; color: var(--text-secondary); font-weight: 600; letter-spacing: 0.08em; }
+  .token-price { font-size: 0.8rem; font-weight: 700; }
 </style>
 
 <script>
   import gsap from 'gsap';
-  
-  // Stagger the agent items on scroll (EXACT Avax Why pattern)
-  const items = document.querySelectorAll('.agent-card');
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target as HTMLElement;
-        const idx = Array.from(items).indexOf(el);
-        gsap.from(el, {
-          x: -50,
-          opacity: 0,
-          duration: 0.8,
-          delay: idx * 0.1,
-          ease: 'power3.out'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Header reveals ───────────────────────────────────
+  gsap.set(['#agents-label', '#agents-title', '.agents-cta-btn'], { opacity: 0 });
+  gsap.set(['#agents-label', '#agents-title'], { y: 50 });
+  gsap.set('.agents-cta-btn', { x: 20 });
+
+  ScrollTrigger.create({
+    trigger: '.agents-header',
+    start: 'top 85%',
+    onEnter: () => {
+      gsap.to('#agents-label', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+      gsap.to('#agents-title', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.1 });
+      gsap.to('.agents-cta-btn', { x: 0, opacity: 1, duration: 0.6, ease: 'power2.out', delay: 0.3 });
+    }
+  });
+
+  // ─── Card stack scroll animation ─────────────────────
+  // Pure scrub approach: map scroll progress → card states directly.
+  // No GSAP timeline. Just onUpdate with direct gsap.set calls.
+  // This avoids timeline scrub complications entirely.
+
+  const cards = Array.from(document.querySelectorAll('.agent-card-stack')) as HTMLElement[];
+  const totalCards = cards.length;
+
+  function applyCardStates(totalProgress: number) {
+    cards.forEach((card, i) => {
+      const cardFill = document.getElementById(`card-progress-${i}`);
+      
+      // Each card has an equal share of progress [segStart, segEnd]
+      const segStart = i / totalCards;
+      const segEnd = (i + 1) / totalCards;
+      const segSize = 1 / totalCards;
+
+      // localProg: 0 = card just entered, 1 = card just exited
+      const localProg = (totalProgress - segStart) / segSize;
+
+      if (localProg < 0) {
+        // Upcoming card — in the stack below the active card
+        const depthBehind = Math.round(-localProg * totalCards);
+        const clampedDepth = Math.min(depthBehind, totalCards - 1);
+        gsap.set(card, {
+          y: clampedDepth * 14,
+          scale: Math.max(0.7, 1 - clampedDepth * 0.04),
+          opacity: Math.max(0, 1 - clampedDepth * 0.18),
+          zIndex: totalCards - clampedDepth,
         });
-        observer.unobserve(el);
+        if (cardFill) cardFill.style.width = '0%';
+
+      } else if (localProg < 1) {
+        // Active card — front and center
+        // First half: card arrives and sits, second half: card starts to exit
+        const exitThreshold = 0.7;
+        
+        if (localProg < exitThreshold) {
+          // Active: scale up to 1, full opacity, top z-index
+          const arrivalProg = localProg / exitThreshold; // 0→1
+          gsap.set(card, {
+            y: gsap.utils.interpolate(0, -6, arrivalProg),
+            scale: gsap.utils.interpolate(1, 1.02, arrivalProg),
+            opacity: 1,
+            zIndex: totalCards + 2,
+          });
+          if (cardFill) cardFill.style.width = `${(localProg / exitThreshold) * 70}%`;
+        } else {
+          // Exiting: fly off upward
+          const exitProg = (localProg - exitThreshold) / (1 - exitThreshold); // 0→1
+          gsap.set(card, {
+            y: gsap.utils.interpolate(-6, -180, exitProg),
+            scale: gsap.utils.interpolate(1.02, 0.9, exitProg),
+            opacity: gsap.utils.interpolate(1, 0, exitProg * 1.5),
+            zIndex: totalCards + 2,
+          });
+          if (cardFill) cardFill.style.width = `${70 + exitProg * 30}%`;
+        }
+
+      } else {
+        // Already exited
+        gsap.set(card, {
+          y: -200,
+          scale: 0.88,
+          opacity: 0,
+          zIndex: 0,
+        });
+        if (cardFill) cardFill.style.width = '100%';
       }
     });
-  }, { threshold: 0.2 });
-  
-  items.forEach(item => observer.observe(item));
+  }
+
+  // Initialize
+  applyCardStates(0);
+
+  ScrollTrigger.create({
+    trigger: '#agents-stack-outer',
+    pin: '#agents-stack-inner',
+    start: 'top top',
+    end: 'bottom bottom',
+    scrub: 1.2,
+    onUpdate: (self) => {
+      applyCardStates(self.progress);
+    }
+  });
 </script>
