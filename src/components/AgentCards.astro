@@ -225,28 +225,27 @@ const agents = [
 </style>
 
 <script>
-  // Simple staggered fade-in animation
-  const cards = document.querySelectorAll('.agent-card');
+  import gsap from 'gsap';
   
-  cards.forEach((card, idx) => {
-    const el = card as HTMLElement;
-    el.style.opacity = '0';
-    el.style.transform = 'translateX(-50px)';
-    el.style.transition = `opacity 0.8s ${idx * 0.1}s ease, transform 0.8s ${idx * 0.1}s ease`;
-  });
+  // EXACT Avax Why pattern: GSAP staggered animation
+  const items = document.querySelectorAll('.agent-card');
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target as HTMLElement;
-        requestAnimationFrame(() => {
-          el.style.opacity = '1';
-          el.style.transform = 'translateX(0)';
+        const idx = Array.from(items).indexOf(el);
+        gsap.from(el, {
+          x: -50,
+          opacity: 0,
+          duration: 0.8,
+          delay: idx * 0.1,
+          ease: 'power3.out'
         });
         observer.unobserve(el);
       }
     });
   }, { threshold: 0.2 });
   
-  cards.forEach(card => observer.observe(card));
+  items.forEach(item => observer.observe(item));
 </script>
