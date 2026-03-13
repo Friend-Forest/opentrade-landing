@@ -1,0 +1,289 @@
+---
+---
+<section class="deploy-section" id="deploy">
+  <div class="deploy-grid">
+    <!-- Left: CTA -->
+    <div class="deploy-left">
+      <div class="deploy-left-bg grid-bg"></div>
+      <div class="deploy-left-content">
+        <div class="section-label">Launch Now</div>
+        <h2 class="deploy-heading">
+          Ready to<br>
+          <span class="text-gradient">Deploy Your<br>First Agent?</span>
+        </h2>
+        <p class="deploy-desc">
+          Go from zero to live trading agent in under 5 minutes.
+          No trading experience required — your AI does the work.
+          You earn the alpha.
+        </p>
+
+        <div class="deploy-features">
+          <div class="deploy-feat">
+            <span class="feat-icon">⚡</span>
+            <span>Live in &lt; 5 minutes</span>
+          </div>
+          <div class="deploy-feat">
+            <span class="feat-icon">🔒</span>
+            <span>Non-custodial — you own your keys</span>
+          </div>
+          <div class="deploy-feat">
+            <span class="feat-icon">🤖</span>
+            <span>AI manages risk automatically</span>
+          </div>
+          <div class="deploy-feat">
+            <span class="feat-icon">💎</span>
+            <span>Agent token launches on deploy</span>
+          </div>
+        </div>
+
+        <div class="deploy-actions">
+          <a href="https://app.opentrade.io" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem">
+            Launch App
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 9h16M10 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          </a>
+          <a href="https://docs.opentrade.io" target="_blank" class="btn btn-ghost" style="font-size:1rem;padding:1rem 2rem">
+            Read Docs
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Code snippet -->
+    <div class="deploy-right">
+      <div class="deploy-right-bg"></div>
+      <div class="deploy-right-content">
+        <div class="terminal deploy-terminal">
+          <div class="terminal-header">
+            <div class="terminal-dot" style="background:#FF5F56"></div>
+            <div class="terminal-dot" style="background:#FFBD2E"></div>
+            <div class="terminal-dot" style="background:#27C93F"></div>
+            <span style="margin-left:0.5rem;font-size:0.7rem;color:#8090b0;font-family:var(--font-mono)">deploy.sh</span>
+          </div>
+          <div class="terminal-body deploy-code" style="font-size:0.82rem">
+            <div class="code-line">
+              <span class="code-comment"># Install OpenTrade CLI</span>
+            </div>
+            <div class="code-line">
+              <span class="code-prompt">$</span>
+              <span class="code-cmd"> npm install -g @opentrade/cli</span>
+            </div>
+            <div class="code-line code-blank"></div>
+            <div class="code-line">
+              <span class="code-comment"># Login with your wallet</span>
+            </div>
+            <div class="code-line">
+              <span class="code-prompt">$</span>
+              <span class="code-cmd"> opentrade auth --chain base</span>
+            </div>
+            <div class="code-line code-blank"></div>
+            <div class="code-line">
+              <span class="code-comment"># Create your agent config</span>
+            </div>
+            <div class="code-line">
+              <span class="code-prompt">$</span>
+              <span class="code-cmd"> opentrade agent create</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#00FF88">? Agent name:</span>
+              <span style="color:#fff"> Alpha-8</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#00FF88">? Strategy:</span>
+              <span style="color:#fff"> momentum</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#00FF88">? Max risk per trade:</span>
+              <span style="color:#fff"> 2%</span>
+            </div>
+            <div class="code-line code-blank"></div>
+            <div class="code-line">
+              <span class="code-prompt">$</span>
+              <span class="code-cmd"> opentrade deploy --agent Alpha-8</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#00F0FF">▶ Deploying agent token...</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#00FF88">✓ Token: ALPHA8 deployed on Base</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#00FF88">✓ Agent live. Monitoring markets.</span>
+            </div>
+            <div class="code-line code-output">
+              <span style="color:#8B5CF6">⚡ First trade executed: +0.8%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick stats -->
+        <div class="deploy-quick-stats">
+          <div class="qs-item">
+            <div class="qs-value glow-cyan mono">$0</div>
+            <div class="qs-label">Deploy cost</div>
+          </div>
+          <div class="qs-divider"></div>
+          <div class="qs-item">
+            <div class="qs-value glow-green mono">5 min</div>
+            <div class="qs-label">Time to live</div>
+          </div>
+          <div class="qs-divider"></div>
+          <div class="qs-item">
+            <div class="qs-value mono" style="color:var(--purple)">24/7</div>
+            <div class="qs-label">Autonomous</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .deploy-section {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .deploy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 640px;
+  }
+
+  /* Left */
+  .deploy-left {
+    position: relative;
+    padding: var(--space-3xl) var(--space-xl);
+    background: var(--bg-surface);
+    border-right: 1px solid rgba(0, 240, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .deploy-left-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.5;
+  }
+
+  .deploy-left-content {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+  }
+
+  .deploy-heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin: 1rem 0 1.25rem;
+  }
+
+  .deploy-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .deploy-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .deploy-feat {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .feat-icon { font-size: 1.1rem; }
+
+  .deploy-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Right */
+  .deploy-right {
+    position: relative;
+    padding: var(--space-3xl) var(--space-xl);
+    background: var(--bg-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .deploy-right-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,240,255,0.04) 0%, transparent 70%);
+  }
+
+  .deploy-right-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .deploy-terminal {
+    box-shadow: var(--glow-cyan);
+  }
+
+  .deploy-code { line-height: 2; }
+
+  .code-line { display: flex; align-items: baseline; gap: 0.25rem; }
+  .code-blank { height: 0.5rem; }
+  .code-comment { color: #3d4f70; font-style: italic; }
+  .code-prompt { color: var(--green); font-weight: 700; }
+  .code-cmd { color: var(--text-primary); }
+  .code-output { margin-left: 1rem; }
+
+  /* Quick stats */
+  .deploy-quick-stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1.25rem;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--bg-border);
+    border-radius: 10px;
+  }
+
+  .qs-item { text-align: center; }
+
+  .qs-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .qs-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .qs-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--bg-border);
+  }
+
+  @media (max-width: 900px) {
+    .deploy-grid { grid-template-columns: 1fr; }
+    .deploy-left { border-right: none; border-bottom: 1px solid var(--bg-border); }
+    .deploy-right { min-height: auto; }
+  }
+</style>

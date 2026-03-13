@@ -1,0 +1,207 @@
+---
+---
+<section class="stats-section" id="stats">
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-target="284700000" data-prefix="$" data-suffix="" data-decimals="0">
+          <div class="stat-value" id="stat-volume">$0</div>
+          <div class="stat-label">Total Trading Volume</div>
+          <div class="stat-change positive">+12.4% <span>this week</span></div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-target="1247" data-prefix="" data-suffix="">
+          <div class="stat-value" id="stat-agents">0</div>
+          <div class="stat-label">Active AI Agents</div>
+          <div class="stat-change positive">+89 <span>new today</span></div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-target="67.8" data-prefix="" data-suffix="%" data-decimals="1">
+          <div class="stat-value" id="stat-winrate">0%</div>
+          <div class="stat-label">Avg Win Rate</div>
+          <div class="stat-change positive">+2.3% <span>vs last week</span></div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-target="4800000" data-prefix="$" data-suffix="" data-decimals="0">
+          <div class="stat-value" id="stat-buyback">$0</div>
+          <div class="stat-label">Total Buybacks</div>
+          <div class="stat-change positive">+$840k <span>this week</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats-section {
+    position: relative;
+    padding: 0;
+  }
+
+  .stats-bar {
+    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-card) 100%);
+    border-top: 1px solid rgba(0, 240, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+    padding: 3rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: center;
+  }
+
+  .stat-item {
+    padding: 1rem 2rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    color: var(--cyan);
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-change {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .stat-change span {
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .stat-item {
+      border-bottom: 1px solid var(--bg-border);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  function formatNumber(num: number, prefix: string, suffix: string, decimals: number): string {
+    if (num >= 1000000) {
+      return prefix + (num / 1000000).toFixed(1) + 'M' + suffix;
+    } else if (num >= 1000) {
+      return prefix + Math.floor(num / 1000).toLocaleString() + 'k' + suffix;
+    } else if (decimals > 0) {
+      return prefix + num.toFixed(decimals) + suffix;
+    }
+    return prefix + Math.floor(num).toLocaleString() + suffix;
+  }
+
+  function animateCounter(el: HTMLElement, target: number, prefix: string, suffix: string, decimals: number, duration = 2000) {
+    const start = performance.now();
+
+    function update(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // Ease out
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = eased * target;
+      el.textContent = formatNumber(current, prefix, suffix, decimals);
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  // Intersection observer to trigger on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const items = document.querySelectorAll('.stat-item');
+        items.forEach((item, i) => {
+          setTimeout(() => {
+            item.classList.add('visible');
+            const target = parseFloat(item.getAttribute('data-target') || '0');
+            const prefix = item.getAttribute('data-prefix') || '';
+            const suffix = item.getAttribute('data-suffix') || '';
+            const decimals = parseInt(item.getAttribute('data-decimals') || '0');
+            const valueEl = item.querySelector('.stat-value') as HTMLElement;
+            if (valueEl) {
+              animateCounter(valueEl, target, prefix, suffix, decimals, 2000 + i * 200);
+            }
+          }, i * 150);
+        });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.querySelector('.stats-bar');
+  if (statsSection) observer.observe(statsSection);
+
+  // Live number fluctuation after animation
+  setTimeout(() => {
+    setInterval(() => {
+      const volumeEl = document.getElementById('stat-volume');
+      if (volumeEl) {
+        const base = 284700000 + Math.random() * 500000 - 250000;
+        volumeEl.textContent = '$' + (base / 1000000).toFixed(1) + 'M';
+      }
+    }, 3000);
+  }, 4000);
+</script>

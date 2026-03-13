@@ -1,0 +1,548 @@
+---
+---
+<section class="hero" id="hero">
+  <!-- Animated background -->
+  <div class="hero-bg">
+    <div class="hero-grid grid-bg"></div>
+    <div class="hero-gradient"></div>
+    <canvas id="particle-canvas" class="hero-canvas"></canvas>
+  </div>
+
+  <!-- Scan line effect -->
+  <div class="scan-line"></div>
+
+  <div class="hero-content container">
+    <!-- Left: Terminal -->
+    <div class="hero-terminal-wrapper">
+      <div class="terminal hero-terminal animate-glow-pulse">
+        <div class="terminal-header">
+          <div class="terminal-dot" style="background:#FF5F56"></div>
+          <div class="terminal-dot" style="background:#FFBD2E"></div>
+          <div class="terminal-dot" style="background:#27C93F"></div>
+          <span style="margin-left:0.5rem;font-family:var(--font-mono);font-size:0.75rem;color:#8090b0">opentrade-agent v2.4.1</span>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+          <div class="terminal-line">
+            <span class="terminal-prompt"></span>
+            <span id="typing-text"></span><span class="animate-blink" style="color:#00F0FF">█</span>
+          </div>
+          <div id="terminal-history"></div>
+        </div>
+      </div>
+
+      <!-- Floating stats -->
+      <div class="hero-float-card float-1">
+        <div class="float-label">24h PnL</div>
+        <div class="float-value positive">+$47,291</div>
+      </div>
+      <div class="hero-float-card float-2">
+        <div class="float-label">Active Agents</div>
+        <div class="float-value" style="color:#8B5CF6">1,247</div>
+      </div>
+    </div>
+
+    <!-- Right: Copy -->
+    <div class="hero-copy">
+      <div class="section-label">AI Trading Platform</div>
+
+      <h1 class="hero-heading">
+        <span class="text-gradient-cyan">Trade Smarter.</span><br>
+        Never Sleep.<br>
+        <span class="glow-green">Never Emote.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Deploy autonomous AI agents that execute trades 24/7 with zero emotional bias.
+        Each agent launches its own token — fees auto-buyback, profits reinforce the flywheel.
+        <span style="color:#00F0FF;font-family:var(--font-mono)">Pure alpha. On Base.</span>
+      </p>
+
+      <div class="hero-actions">
+        <a href="#deploy" class="btn btn-primary" style="font-size:1rem;padding:0.875rem 2rem">
+          Deploy Your Agent
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn btn-secondary" style="font-size:1rem;padding:0.875rem 2rem">
+          How It Works
+        </a>
+      </div>
+
+      <div class="hero-badges">
+        <span class="badge badge-cyan">Base Chain</span>
+        <span class="badge badge-green">Non-Custodial</span>
+        <span class="badge badge-purple">Agent Tokens</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ticker tape -->
+  <div class="ticker-wrapper">
+    <div class="ticker-inner">
+      <div class="ticker-track" id="ticker">
+        <span class="ticker-item positive">BTC +3.2% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">ETH -1.1% ▼</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">SOL +8.7% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">BASE +5.4% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">DOGE -2.3% ▼</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">AVAX +4.1% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">LINK +6.8% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">ARB -0.9% ▼</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">OP +3.5% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">Agent-Alpha +124% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">Agent-Mochi +89% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">Agent-Zeta -4.2% ▼</span>
+        <span class="ticker-sep">·</span>
+        <!-- Duplicate for seamless loop -->
+        <span class="ticker-item positive">BTC +3.2% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">ETH -1.1% ▼</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">SOL +8.7% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">BASE +5.4% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">DOGE -2.3% ▼</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">AVAX +4.1% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">LINK +6.8% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">ARB -0.9% ▼</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">OP +3.5% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">Agent-Alpha +124% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item positive">Agent-Mochi +89% ▲</span>
+        <span class="ticker-sep">·</span>
+        <span class="ticker-item negative">Agent-Zeta -4.2% ▼</span>
+        <span class="ticker-sep">·</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 64px;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.6;
+  }
+
+  .hero-gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,240,255,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(139,92,246,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0,255,136,0.04) 0%, transparent 50%);
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    opacity: 0.4;
+  }
+
+  .scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0,240,255,0.3), transparent);
+    animation: scan-line 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+  }
+
+  /* Terminal */
+  .hero-terminal-wrapper {
+    position: relative;
+  }
+
+  .hero-terminal {
+    width: 100%;
+  }
+
+  .hero-terminal .terminal-body {
+    font-size: 0.82rem;
+    min-height: 300px;
+  }
+
+  .terminal-line {
+    line-height: 1.8;
+  }
+
+  #terminal-history .hist-prompt::before {
+    content: '$ ';
+    color: #00FF88;
+  }
+
+  #terminal-history .hist-output {
+    color: #8090b0;
+    margin-left: 1rem;
+    display: block;
+  }
+
+  #terminal-history .hist-success {
+    color: #00FF88;
+    margin-left: 1rem;
+    display: block;
+  }
+
+  #terminal-history .hist-info {
+    color: #00F0FF;
+    margin-left: 1rem;
+    display: block;
+  }
+
+  /* Float cards */
+  .hero-float-card {
+    position: absolute;
+    background: rgba(13, 20, 36, 0.9);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    backdrop-filter: blur(10px);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .float-1 {
+    bottom: -20px;
+    right: -20px;
+    animation-delay: 0s;
+  }
+
+  .float-2 {
+    top: 20px;
+    right: -30px;
+    animation-delay: 1.5s;
+  }
+
+  .float-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: #8090b0;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+
+  .float-value {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  /* Hero copy */
+  .hero-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .hero-heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #8090b0;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Ticker */
+  .ticker-wrapper {
+    position: relative;
+    z-index: 3;
+    border-top: 1px solid rgba(0, 240, 255, 0.15);
+    background: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker-inner {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ticker-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    white-space: nowrap;
+    animation: ticker 40s linear infinite;
+  }
+
+  .ticker-item {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .ticker-sep {
+    color: #3d4f70;
+    font-size: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      padding-top: 2rem;
+    }
+
+    .hero-terminal-wrapper {
+      order: 2;
+    }
+
+    .hero-copy { order: 1; }
+
+    .float-1, .float-2 { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-heading { font-size: 2.2rem; }
+    .hero-actions { flex-direction: column; }
+    .hero-actions .btn { width: 100%; justify-content: center; }
+  }
+</style>
+
+<script>
+  // Typing terminal animation
+  const sequences = [
+    {
+      cmd: 'opentrade agent create --strategy momentum --risk 0.02',
+      outputs: [
+        { text: 'Initializing agent "Alpha-7"...', type: 'output' },
+        { text: 'Deploying token contract on Base...', type: 'output' },
+        { text: '✓ Token deployed: 0x1a2b...3c4d', type: 'success' },
+        { text: '✓ Agent active. Monitoring 47 pairs.', type: 'success' },
+      ]
+    },
+    {
+      cmd: 'opentrade stats --agent Alpha-7 --period 7d',
+      outputs: [
+        { text: '━━━━━━━━━━ Performance Report ━━━━━━━━━━', type: 'info' },
+        { text: '7d PnL: +$12,847 (+23.4%)', type: 'success' },
+        { text: 'Trades: 342 | Win Rate: 67.8%', type: 'output' },
+        { text: 'Buyback triggered: 3 times ($4.2k)', type: 'info' },
+      ]
+    },
+    {
+      cmd: 'opentrade buyback --agent Alpha-7 --trigger profit',
+      outputs: [
+        { text: 'Profit threshold reached: $8,400', type: 'output' },
+        { text: 'Executing token buyback...', type: 'output' },
+        { text: '✓ Bought back 12,000 ALPHA7 tokens', type: 'success' },
+        { text: '✓ Token price: $0.042 (+18.3%)', type: 'success' },
+      ]
+    }
+  ];
+
+  let seqIndex = 0;
+  let charIndex = 0;
+  let isTyping = false;
+  const typingEl = document.getElementById('typing-text');
+  const historyEl = document.getElementById('terminal-history');
+  const MAX_HISTORY = 12;
+
+  function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function addToHistory(text: string, type: string) {
+    const line = document.createElement('div');
+    if (type === 'cmd') {
+      line.className = 'hist-prompt';
+      line.style.color = '#e0e8ff';
+    } else if (type === 'success') {
+      line.className = 'hist-success';
+    } else if (type === 'info') {
+      line.className = 'hist-info';
+    } else {
+      line.className = 'hist-output';
+    }
+    line.textContent = text;
+    historyEl?.appendChild(line);
+
+    // Keep history manageable
+    const lines = historyEl?.querySelectorAll('div') || [];
+    if (lines.length > MAX_HISTORY) {
+      lines[0]?.remove();
+    }
+    historyEl?.scrollTo(0, historyEl.scrollHeight);
+  }
+
+  async function runSequence() {
+    const seq = sequences[seqIndex % sequences.length];
+    seqIndex++;
+
+    // Type command
+    const cmd = seq.cmd;
+    charIndex = 0;
+    if (typingEl) typingEl.textContent = '';
+    isTyping = true;
+
+    for (const char of cmd) {
+      if (typingEl) typingEl.textContent += char;
+      await sleep(40 + Math.random() * 30);
+    }
+
+    await sleep(400);
+
+    // Move command to history
+    addToHistory(cmd, 'cmd');
+    if (typingEl) typingEl.textContent = '';
+
+    // Show outputs
+    for (const out of seq.outputs) {
+      await sleep(300 + Math.random() * 200);
+      addToHistory(out.text, out.type);
+    }
+
+    await sleep(2500);
+    isTyping = false;
+    runSequence();
+  }
+
+  // Start after a short delay
+  setTimeout(runSequence, 1000);
+
+  // Particle canvas
+  const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+
+    const resize = () => {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    interface Particle {
+      x: number; y: number;
+      vx: number; vy: number;
+      size: number;
+      alpha: number;
+      color: string;
+    }
+
+    const particles: Particle[] = [];
+    const COLORS = ['#00F0FF', '#00FF88', '#8B5CF6'];
+
+    for (let i = 0; i < 60; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 0.5,
+        alpha: Math.random() * 0.6 + 0.2,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)]
+      });
+    }
+
+    function animate() {
+      if (!ctx) return;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.alpha;
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      // Draw connections
+      particles.forEach((a, i) => {
+        particles.slice(i + 1).forEach(b => {
+          const dx = a.x - b.x;
+          const dy = a.y - b.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = '#00F0FF';
+            ctx.globalAlpha = (1 - dist / 120) * 0.15;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+            ctx.globalAlpha = 1;
+          }
+        });
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  }
+</script>

@@ -1,0 +1,317 @@
+---
+---
+<section class="tokenomics-section" id="tokenomics">
+  <div class="container">
+    <div class="tokenomics-grid">
+      <!-- Left: Copy -->
+      <div class="tokenomics-copy">
+        <div class="section-label">Tokenomics</div>
+        <h2 class="section-title">Self-Sustaining<br><span class="text-gradient">Flywheel Economy</span></h2>
+        <p class="tokenomics-desc">
+          Every agent token is designed for compounding value. Trading fees and profits
+          automatically trigger buybacks — creating deflationary pressure that rewards
+          token holders as agents perform.
+        </p>
+
+        <div class="tokenomics-flows">
+          <div class="flow-item">
+            <div class="flow-icon" style="color:var(--cyan);background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.3)">💸</div>
+            <div class="flow-content">
+              <div class="flow-title">Trading Fee Buyback</div>
+              <div class="flow-desc">30% of all trading fees go directly to buying back the agent's token from the open market.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-icon" style="color:var(--green);background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">📊</div>
+            <div class="flow-content">
+              <div class="flow-title">Profit Buyback</div>
+              <div class="flow-desc">When agents hit profit milestones, 20% of realized profits execute additional buybacks.</div>
+            </div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-icon" style="color:var(--purple);background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3)">🔥</div>
+            <div class="flow-content">
+              <div class="flow-title">Burn Mechanism</div>
+              <div class="flow-desc">50% of bought-back tokens are burned permanently, reducing supply over time.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Wheel diagram -->
+      <div class="tokenomics-wheel-wrapper">
+        <div class="wheel-container" id="flywheel">
+          <!-- Central -->
+          <div class="wheel-center">
+            <div class="wheel-center-icon">⚡</div>
+            <div class="wheel-center-label mono">TOKEN</div>
+          </div>
+
+          <!-- Ring nodes -->
+          <div class="wheel-node node-top" id="node-fees">
+            <div class="node-icon">💰</div>
+            <div class="node-label">Trading Fees</div>
+          </div>
+
+          <div class="wheel-node node-right" id="node-buyback">
+            <div class="node-icon">🔄</div>
+            <div class="node-label">Buyback</div>
+          </div>
+
+          <div class="wheel-node node-bottom" id="node-burn">
+            <div class="node-icon">🔥</div>
+            <div class="node-label">Burn</div>
+          </div>
+
+          <div class="wheel-node node-left" id="node-value">
+            <div class="node-icon">📈</div>
+            <div class="node-label">Token Value</div>
+          </div>
+
+          <!-- SVG arrows -->
+          <svg class="wheel-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <marker id="arrow-cyan" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#00F0FF"/>
+              </marker>
+              <marker id="arrow-green" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#00FF88"/>
+              </marker>
+              <marker id="arrow-purple" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="#8B5CF6"/>
+              </marker>
+              <filter id="glow-filter">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <!-- Circle path -->
+            <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(0,240,255,0.1)" stroke-width="1" stroke-dasharray="4 4"/>
+
+            <!-- Arc segments -->
+            <path d="M 150 50 A 100 100 0 0 1 250 150" fill="none" stroke="#00F0FF" stroke-width="2"
+              stroke-dasharray="8 4" marker-end="url(#arrow-cyan)" filter="url(#glow-filter)" opacity="0.8"/>
+            <path d="M 250 150 A 100 100 0 0 1 150 250" fill="none" stroke="#00FF88" stroke-width="2"
+              stroke-dasharray="8 4" marker-end="url(#arrow-green)" filter="url(#glow-filter)" opacity="0.8"/>
+            <path d="M 150 250 A 100 100 0 0 1 50 150" fill="none" stroke="#8B5CF6" stroke-width="2"
+              stroke-dasharray="8 4" marker-end="url(#arrow-purple)" filter="url(#glow-filter)" opacity="0.8"/>
+            <path d="M 50 150 A 100 100 0 0 1 150 50" fill="none" stroke="#00F0FF" stroke-width="2"
+              stroke-dasharray="8 4" marker-end="url(#arrow-cyan)" filter="url(#glow-filter)" opacity="0.8"/>
+          </svg>
+        </div>
+
+        <!-- Token supply breakdown -->
+        <div class="supply-bar-section">
+          <div class="supply-title mono">Token Allocation</div>
+          <div class="supply-bars">
+            <div class="supply-item">
+              <div class="supply-label">Trading Pool</div>
+              <div class="supply-bar-wrap">
+                <div class="supply-bar" style="width:40%;background:var(--cyan)"></div>
+              </div>
+              <div class="supply-pct mono">40%</div>
+            </div>
+            <div class="supply-item">
+              <div class="supply-label">Buyback Reserve</div>
+              <div class="supply-bar-wrap">
+                <div class="supply-bar" style="width:30%;background:var(--green)"></div>
+              </div>
+              <div class="supply-pct mono">30%</div>
+            </div>
+            <div class="supply-item">
+              <div class="supply-label">Team / Dev</div>
+              <div class="supply-bar-wrap">
+                <div class="supply-bar" style="width:15%;background:var(--purple)"></div>
+              </div>
+              <div class="supply-pct mono">15%</div>
+            </div>
+            <div class="supply-item">
+              <div class="supply-label">Community</div>
+              <div class="supply-bar-wrap">
+                <div class="supply-bar" style="width:15%;background:#FFE600"></div>
+              </div>
+              <div class="supply-pct mono">15%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tokenomics-section {
+    padding: var(--space-3xl) 0;
+    position: relative;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--bg-border);
+    border-bottom: 1px solid var(--bg-border);
+  }
+
+  .tokenomics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .tokenomics-desc {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 1.25rem 0 2rem;
+  }
+
+  /* Flows */
+  .tokenomics-flows {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .flow-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .flow-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .flow-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .flow-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Wheel */
+  .tokenomics-wheel-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .wheel-container {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+  }
+
+  .wheel-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    animation: rotate-slow 20s linear infinite;
+  }
+
+  .wheel-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,240,255,0.2), rgba(0,240,255,0.05));
+    border: 2px solid rgba(0,240,255,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    box-shadow: 0 0 30px rgba(0,240,255,0.3);
+  }
+
+  .wheel-center-icon { font-size: 1.5rem; }
+  .wheel-center-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; color: var(--cyan); }
+
+  .wheel-node {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    width: 64px;
+    z-index: 3;
+  }
+
+  .node-icon { font-size: 1.4rem; }
+  .node-label { font-size: 0.65rem; font-family: var(--font-mono); font-weight: 600; color: var(--text-secondary); text-align: center; line-height: 1.2; }
+
+  .node-top    { top: 0; left: 50%; transform: translateX(-50%); }
+  .node-right  { right: 0; top: 50%; transform: translateY(-50%); }
+  .node-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
+  .node-left   { left: 0; top: 50%; transform: translateY(-50%); }
+
+  /* Supply bars */
+  .supply-bar-section {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+
+  .supply-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .supply-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .supply-item {
+    display: grid;
+    grid-template-columns: 130px 1fr 40px;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .supply-label { font-size: 0.8rem; color: var(--text-secondary); }
+
+  .supply-bar-wrap {
+    height: 8px;
+    background: var(--bg-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .supply-bar {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1s ease;
+  }
+
+  .supply-pct { font-size: 0.78rem; font-weight: 700; color: var(--text-primary); text-align: right; }
+
+  @media (max-width: 900px) {
+    .tokenomics-grid { grid-template-columns: 1fr; }
+    .wheel-container { margin: 0 auto; }
+  }
+</style>

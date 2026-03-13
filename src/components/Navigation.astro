@@ -1,349 +1,185 @@
 ---
 ---
-
-<nav id="navigation">
-  <div class="nav-container">
-    <a href="/" class="nav-logo" aria-label="Avalanche Home">
-      <svg width="140" height="32" viewBox="0 0 140 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Avalanche Triangle Logo -->
-        <path d="M16 2L30 28H2L16 2Z" fill="#FF394A"/>
-        <!-- AVALANCHE text -->
-        <path d="M42 24L47.5 8h2.8L56 24h-3l-1.2-3.8h-5.6L45 24h-3zm5.4-6h4l-2-6.5-2 6.5zM58 8h3v13.5h7V24H58V8zM70 8h3v13.5h7V24H70V8zM83 8l4.5 12L92 8h3l-6 16h-3l-6-16h3zM99 8h10v2.5h-7v3.8h6.5v2.5H102v4.7h7.2V24H99V8zM113 16c0-4.8 3.2-8.3 8-8.3 3.2 0 5.5 1.4 6.7 3.6l-2.5 1.4c-.8-1.5-2.3-2.5-4.2-2.5-2.9 0-5 2.3-5 5.8s2.1 5.8 5 5.8c1.9 0 3.4-1 4.2-2.5l2.5 1.4c-1.2 2.2-3.5 3.6-6.7 3.6-4.8 0-8-3.5-8-8.3zM131 8h3v6.5l6-6.5h3.8l-6.5 7 6.8 9h-3.8l-5-6.8-1.3 1.4V24h-3V8z" fill="white"/>
+<nav id="nav" class="nav">
+  <div class="nav-inner container">
+    <!-- Logo -->
+    <a href="/" class="nav-logo">
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="rgba(0,240,255,0.1)" stroke="rgba(0,240,255,0.4)" stroke-width="1"/>
+        <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="14" fill="#00F0FF">OT</text>
       </svg>
+      <span class="nav-brand">OpenTrade</span>
     </a>
 
-    <ul class="nav-links">
-      <li class="nav-item">
-        <button class="nav-link build">Build</button>
-        <div class="nav-dropdown">
-          <a href="/build/developer-hub">Developer Hub</a>
-          <a href="/build/validators">Validators</a>
-          <a href="https://build.avax.network/docs" target="_blank">Documentation</a>
-          <a href="https://build.avax.network/academy" target="_blank">Academy</a>
-          <a href="https://build.avax.network/tools" target="_blank">Tools</a>
-          <a href="https://build.avax.network/grants" target="_blank">Grants</a>
-          <a href="https://build.avax.network/integrations" target="_blank">Integrations</a>
-          <a href="https://build.avax.network/hackathons" target="_blank">Hackathons</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link solutions">Solutions</button>
-        <div class="nav-dropdown">
-          <a href="/institutions">Institutions & Capital Markets</a>
-          <a href="/gaming">Gaming</a>
-          <a href="/enterprise">Enterprise & Consumer Apps</a>
-          <a href="/defi">Decentralized Finance (DeFi)</a>
-          <a href="/nft">NFTs, Arts & Culture</a>
-          <a href="/infrastructure">Infrastructure and Tooling</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link community">Community</button>
-        <div class="nav-dropdown">
-          <a href="/community-hub">Community Hub</a>
-          <a href="/community-hub/events">Events</a>
-          <a href="/community-hub/newsletter">Snow Report Newsletter</a>
-          <a href="https://discord.com/invite/avax" target="_blank">Discord Community</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link about">About</button>
-        <div class="nav-dropdown">
-          <a href="/about">About Avalanche</a>
-          <a href="/about/foundation">Avalanche Foundation</a>
-          <a href="/about/blog">Blog</a>
-          <a href="/about/contact-us">Contact Us</a>
-          <a href="/about/press">Press</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a href="https://build.avax.network/grants" class="nav-link grants-link">Grants</a>
-      </li>
-    </ul>
-
-    <div class="nav-actions">
-      <button class="dark-mode-toggle" aria-label="Toggle dark mode">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <circle cx="10" cy="10" r="4" fill="currentColor"/>
-          <path d="M10 1v2M10 17v2M1 10h2M17 10h2M3.5 3.5l1.4 1.4M15.1 15.1l1.4 1.4M3.5 16.5l1.4-1.4M15.1 4.9l1.4-1.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      </button>
-      <button class="mobile-menu-btn" aria-label="Toggle mobile menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <!-- Links -->
+    <div class="nav-links" id="nav-links">
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#agents" class="nav-link">Agents</a>
+      <a href="#tokenomics" class="nav-link">Tokenomics</a>
+      <a href="#leaderboard" class="nav-link">Leaderboard</a>
     </div>
-  </div>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu">
-    <div class="mobile-menu-inner">
-      <a href="/build/developer-hub">Developer Hub</a>
-      <a href="https://build.avax.network/docs" target="_blank">Documentation</a>
-      <a href="/gaming">Gaming</a>
-      <a href="/institutions">Institutions</a>
-      <a href="/community-hub">Community</a>
-      <a href="/about">About</a>
-      <a href="https://build.avax.network/grants" target="_blank">Grants</a>
+    <!-- CTA -->
+    <div class="nav-actions">
+      <a href="#deploy" class="btn btn-primary nav-cta">
+        <span>Deploy Agent</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
 
 <style>
-  #navigation {
+  .nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
+    right: 0;
     z-index: 1000;
-    height: var(--navbar-height);
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: background 0.3s ease;
+    height: 64px;
+    background: rgba(3, 7, 18, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    transition: background 0.3s ease, border-color 0.3s ease;
   }
 
-  #navigation.scrolled {
-    background: rgba(0, 0, 0, 0.95);
+  .nav.scrolled {
+    background: rgba(3, 7, 18, 0.95);
+    border-bottom-color: rgba(0, 240, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   }
 
-  .nav-container {
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 0 var(--padding-xl);
-    height: 100%;
+  .nav-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2rem;
+    height: 100%;
   }
 
   .nav-logo {
-    flex-shrink: 0;
     display: flex;
     align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
   }
 
-  .nav-logo svg {
-    height: clamp(1.5rem, 2.5vw, 2rem);
-    width: auto;
+  .nav-brand {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: -0.02em;
   }
 
   .nav-links {
     display: flex;
     align-items: center;
-    gap: clamp(1rem, 2vw, 2rem);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .nav-item {
-    position: relative;
+    gap: 2.5rem;
   }
 
   .nav-link {
-    font-family: var(--font-primary);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-white);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem 0;
-    letter-spacing: 0.02em;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #8090b0;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    transition: color 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #00F0FF;
+    transition: width 0.3s ease;
   }
 
   .nav-link:hover {
-    opacity: 1;
+    color: #00F0FF;
   }
 
-  .grants-link {
-    font-family: var(--font-primary);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-red);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    opacity: 1;
-    transition: opacity 0.2s ease;
+  .nav-link:hover::after {
+    width: 100%;
   }
 
-  /* Dropdown */
-  .nav-dropdown {
-    position: absolute;
-    top: calc(100% + 1rem);
-    left: 0;
-    min-width: 220px;
-    background: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 1rem 0;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: opacity 0.3s var(--ease-out-cubic), transform 0.3s var(--ease-out-cubic), visibility 0.3s;
-    clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      100% calc(100% - 16px),
-      calc(100% - 16px) 100%,
-      0% 100%
-    );
-  }
-
-  .nav-item:hover .nav-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .nav-dropdown a {
-    display: block;
-    padding: 0.6rem 1.5rem;
-    font-size: var(--text-sm);
-    font-weight: 500;
-    color: var(--color-neutral-300);
-    transition: color 0.2s ease, padding-left 0.2s ease;
-    text-transform: none;
-    letter-spacing: 0;
-  }
-
-  .nav-dropdown a:hover {
-    color: var(--color-white);
-    padding-left: 1.8rem;
-  }
-
-  /* Actions */
   .nav-actions {
     display: flex;
     align-items: center;
     gap: 1rem;
   }
 
-  .dark-mode-toggle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 2rem;
-    height: 2rem;
-    color: var(--color-white);
-    opacity: 0.7;
-    transition: opacity 0.2s ease;
-    cursor: pointer;
+  .nav-cta {
+    padding: 0.5rem 1.25rem;
+    font-size: 0.8rem;
   }
 
-  .dark-mode-toggle:hover {
-    opacity: 1;
-  }
-
-  /* Mobile Menu Button */
-  .mobile-menu-btn {
+  .nav-hamburger {
     display: none;
     flex-direction: column;
     gap: 5px;
-    width: 28px;
-    height: 20px;
+    padding: 0.5rem;
     cursor: pointer;
-    padding: 0;
   }
 
-  .mobile-menu-btn span {
+  .nav-hamburger span {
     display: block;
-    width: 100%;
+    width: 22px;
     height: 2px;
-    background: var(--color-white);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    background: #fff;
+    transition: all 0.3s ease;
   }
 
-  /* Mobile Menu */
-  .mobile-menu {
-    display: none;
-    position: fixed;
-    top: var(--navbar-height);
-    left: 0;
-    width: 100%;
-    height: calc(100vh - var(--navbar-height));
-    background: var(--color-dark);
-    z-index: 999;
-    overflow-y: auto;
-    transform: translateX(-100%);
-    transition: transform 0.4s var(--ease-out-cubic);
-  }
-
-  .mobile-menu.open {
-    transform: translateX(0);
-  }
-
-  .mobile-menu-inner {
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .mobile-menu-inner a {
-    font-size: var(--text-4xl);
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-    color: var(--color-white);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 1.5rem;
-    transition: color 0.2s ease;
-  }
-
-  .mobile-menu-inner a:hover {
-    color: var(--color-red);
-  }
-
-  @media (max-width: 1024px) {
+  @media (max-width: 768px) {
     .nav-links {
       display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: rgba(3, 7, 18, 0.98);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      flex-direction: column;
+      padding: 1.5rem;
+      gap: 1.5rem;
     }
 
-    .mobile-menu-btn {
-      display: flex;
-    }
+    .nav-links.open { display: flex; }
 
-    .mobile-menu {
-      display: block;
-    }
+    .nav-hamburger { display: flex; }
+    .nav-cta { display: none; }
   }
 </style>
 
 <script>
-  const nav = document.getElementById('navigation');
-  const mobileBtn = document.querySelector('.mobile-menu-btn');
-  const mobileMenu = document.querySelector('.mobile-menu');
-
   // Scroll effect
+  const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
+    if (window.scrollY > 20) {
       nav?.classList.add('scrolled');
     } else {
       nav?.classList.remove('scrolled');
     }
   });
 
-  // Mobile menu toggle
-  mobileBtn?.addEventListener('click', () => {
-    mobileMenu?.classList.toggle('open');
-    const spans = mobileBtn.querySelectorAll('span');
-    if (mobileMenu?.classList.contains('open')) {
-      spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
-      spans[1].style.opacity = '0';
-      spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
-    } else {
-      spans[0].style.transform = '';
-      spans[1].style.opacity = '';
-      spans[2].style.transform = '';
-    }
+  // Mobile menu
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks = document.getElementById('nav-links');
+  hamburger?.addEventListener('click', () => {
+    navLinks?.classList.toggle('open');
+  });
+
+  // Close on link click
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks?.classList.remove('open');
+    });
   });
 </script>

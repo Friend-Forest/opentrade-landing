@@ -1,81 +1,52 @@
 ---
-export interface Props {
+interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
-const { 
-  title = "OpenTrade — Autonomous AI Trading Platform",
-  description = "OpenTrade is the platform for autonomous AI trading agents. Each agent has its own token. Trading fees and profits buy back the token, creating self-sustaining tokenomics. 24/7 trading, no emotions, pure alpha."
+const {
+  title = "OpenTrade — Autonomous AI Trading Agents",
+  description = "Deploy AI agents that trade crypto 24/7. No emotions, pure alpha. Each agent has its own token with automatic buyback mechanics on Base.",
+  ogImage = "/og-image.png"
 } = Astro.props;
 ---
+
 <!DOCTYPE html>
-<html lang="en" class="bg-neutral-950 dark:bg-neutral-800 text-black dark:text-white transition-mode lenis lenis-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content={description}>
-  <meta property="og:title" content="OpenTrade — Autonomous AI Trading Platform">
-  <meta property="og:description" content={description}>
-  <meta property="og:image" content="/images/opentrade-og.png">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="OpenTrade">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="OpenTrade — Autonomous AI Trading Platform">
-  <meta name="twitter:description" content={description}>
-  <meta name="theme-color" content="#0a0f1e">
-  
-  <!-- Favicon -->
-  <link href="/favicon.svg" media="(prefers-color-scheme: light)" rel="shortcut icon" type="image/x-icon">
-  <link href="/favicon.svg" media="(prefers-color-scheme: dark)" rel="shortcut icon" type="image/x-icon">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#030712" />
 
-  <!-- Font preloads -->
-  <link rel="preload" href="/fonts/Aeonik-Regular.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/fonts/Aeonik-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  
   <title>{title}</title>
+  <meta name="description" content={description} />
 
-  <!-- Load the avax.network CSS (local copy with fixed font paths) -->
-  <link rel="stylesheet" href="/avax.css">
+  <!-- Open Graph -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://opentrade-landing.vercel.app" />
 
-  <!-- OpenTrade brand overrides -->
-  <style>
-    :root {
-      /* Override Tailwind-style CSS vars to use OpenTrade blue */
-      --color-red: #0066FF !important;
-    }
-    /* Nav hover + active states */
-    .hover\:text-red:hover { color: #0066FF !important; }
-    .text-red { color: #0066FF !important; }
-    .bg-red { background-color: #0066FF !important; }
-    .fill-red { fill: #0066FF !important; }
-    .after\:bg-red::after { background-color: #0066FF !important; }
-    .dark\:fill-red { fill: #0066FF !important; }
-    /* purple accent for insight card 4 */
-    .\[--bg-color\:var\(--color-red\)\] { --bg-color: #6B21A8 !important; }
-    /* Button */
-    .dark\:hover\:fill-white:hover { fill: #ffffff; }
-    /* Pulse dot green */
-    .live-dot, [class*="live"] { background: #00FF88 !important; }
-  </style>
-  
-  <!-- Critical: Theme + Mounted class initialization -->
-  <script is:inline>
-    (function() {
-      // Force dark theme by default
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@0xxmemo" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
 
-      document.addEventListener("DOMContentLoaded", () => {
-        document.documentElement.classList.add("mounted");
-      });
-    })();
-  </script>
-  
-  <!-- wm-shape custom element -->
-  <script is:inline src="/shape.js"></script>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="/src/styles/global.css" />
 </head>
-<body class="flex flex-col min-h-dvh">
+<body>
   <slot />
 </body>
 </html>
