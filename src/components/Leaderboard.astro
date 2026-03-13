@@ -11,9 +11,8 @@ const rows = [
 ];
 ---
 <section id="leaderboard" class="leaderboard-section">
-  <div class="lb-header-section container max-w-7xl mx-auto px-6">
-    <!-- Header -->
-    <div class="lb-header mb-12 md:mb-16" data-reveal>
+  <div class="lb-header-section">
+    <div class="lb-header" data-reveal>
       <div>
         <p class="section-label">Rankings</p>
         <h2 class="section-title">Agent Leaderboard</h2>
@@ -33,7 +32,6 @@ const rows = [
     </div>
   </div>
 
-  <!-- Horizontal Scroll Wrapper (like Avax HowItWorks) -->
   <div class="lb-scroll-outer" id="lb-scroll-outer">
     <div class="lb-scroll-inner" id="lb-scroll-inner">
       {rows.map((row, i) => (
@@ -91,12 +89,19 @@ const rows = [
 
 <style>
   .leaderboard-section {
-    padding: var(--space-3xl) 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
     background: var(--bg-base);
+    overflow: hidden;
+    box-sizing: border-box;
+    padding-top: var(--nav-height, 64px);
   }
 
   .lb-header-section {
-    margin-bottom: 2rem;
+    flex-shrink: 0;
+    padding: var(--space-lg) var(--space-lg) 0;
+    margin-bottom: 1.5rem;
   }
 
   .lb-header {
@@ -163,8 +168,8 @@ const rows = [
 
   /* ─── Horizontal scroll (like Avax HowItWorks) ── */
   .lb-scroll-outer {
-    /* Height is just for the visible card area — pinning handles scroll distance */
-    height: 100vh;
+    flex: 1;
+    min-height: 0;
     position: relative;
     overflow: hidden;
   }
@@ -303,19 +308,18 @@ const rows = [
   });
 
   // ─── Horizontal scroll with PROPER end calculation (like Avax HowItWorks) ──
-  const scrollOuter = document.getElementById('lb-scroll-outer');
+  const section = document.querySelector('.leaderboard-section') as HTMLElement;
   const scrollInner = document.getElementById('lb-scroll-inner');
 
-  if (scrollOuter && scrollInner) {
+  if (section && scrollInner) {
     const scrollTween = gsap.to(scrollInner, {
       x: () => -(scrollInner.offsetWidth - window.innerWidth),
       ease: 'none',
     });
 
     ScrollTrigger.create({
-      trigger: scrollOuter,
+      trigger: section,
       start: 'top top',
-      // Proper end calculation: scroll distance = inner total width - viewport width
       end: () => `+=${scrollInner.offsetWidth - window.innerWidth}`,
       pin: true,
       pinSpacing: true,
