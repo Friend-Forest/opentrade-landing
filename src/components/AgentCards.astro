@@ -318,8 +318,6 @@ const agents = [
 </style>
 
 <script>
-  import gsap from 'gsap';
-  
   // EXACT Avax Why pattern: simple IntersectionObserver stagger
   const items = document.querySelectorAll('.agent-card');
   
@@ -335,8 +333,10 @@ const agents = [
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const el = entry.target as HTMLElement;
-        el.style.opacity = '1';
-        el.style.transform = 'translateX(0)';
+        requestAnimationFrame(() => {
+          el.style.opacity = '1';
+          el.style.transform = 'translateX(0)';
+        });
         observer.unobserve(el);
       }
     });
