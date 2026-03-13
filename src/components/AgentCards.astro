@@ -63,40 +63,42 @@ const agents = [
 ];
 ---
 
-<section class="agents-section section">
-  <div class="container" style="max-width: 100%; padding: 0;">
-    <div class="agents-header" data-reveal style="padding: 0 4rem; margin-bottom: 3rem;">
-      <h2 class="agents-title">
-        <span class="title-line">Top</span>
-        <span class="title-line title-highlight">Trading Agents</span>
-      </h2>
-    </div>
+<section class="agents-section">
+  <div class="agents-header">
+    <h2 class="agents-title">
+      <span class="title-line">Top</span>
+      <span class="title-line title-highlight">Trading Agents</span>
+    </h2>
+  </div>
 
-    <div class="agents-items" style="padding: 0 4rem;">
-      {agents.map((agent, i) => (
-        <div class="agent-card" data-reveal style={`--item-bg: ${agent.bg}; --item-accent: ${agent.color}`}>
-          <div class="agent-card-inner">
-            <div class="agent-number">{agent.num}</div>
-            <div class="agent-content">
-              <h3 class="agent-title">{agent.title}</h3>
-              <p class="agent-desc">{agent.desc}</p>
-            </div>
-            <div class="agent-pnl">
-              <div class={`pnl-value mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnl}</div>
-              <div class={`pnl-pct mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pct}</div>
-            </div>
+  <div class="agents-items">
+    {agents.map((agent) => (
+      <div class="agent-card" style={`--item-bg: ${agent.bg}; --item-accent: ${agent.color}`}>
+        <div class="agent-card-inner">
+          <div class="agent-number">{agent.num}</div>
+          <div class="agent-content">
+            <h3 class="agent-title">{agent.title}</h3>
+            <p class="agent-desc">{agent.desc}</p>
+          </div>
+          <div class="agent-pnl">
+            <div class={`pnl-value ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnl}</div>
+            <div class={`pnl-pct ${agent.positive ? 'positive' : 'negative'}`}>{agent.pct}</div>
           </div>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </div>
 </section>
 
 <style>
   .agents-section {
-    background: var(--color-neutral-950);
-    padding-top: 6rem;
-    padding-bottom: 6rem;
+    background: #0a0a0a;
+    padding: 6rem 0;
+  }
+
+  .agents-header {
+    padding: 0 4rem;
+    margin-bottom: 3rem;
   }
 
   .agents-title {
@@ -112,13 +114,15 @@ const agents = [
   }
 
   .title-highlight {
-    color: var(--color-white);
+    color: #fff;
   }
 
   .agents-items {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 2px !important;
+    padding: 0 4rem;
+    margin: 0;
   }
 
   .agent-card {
@@ -141,11 +145,12 @@ const agents = [
   }
 
   .agent-number {
-    font-size: 0.75rem;
+    font-size: 1rem;
     font-weight: 700;
-    color: var(--color-neutral-500);
-    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
     flex-shrink: 0;
+    min-width: 2rem;
   }
 
   .agent-content {
@@ -156,14 +161,14 @@ const agents = [
     font-size: 2rem;
     font-weight: 700;
     text-transform: uppercase;
-    color: var(--color-white);
+    color: #fff;
     margin-bottom: 0.75rem;
     letter-spacing: 0.05em;
   }
 
   .agent-desc {
     font-size: 1rem;
-    color: var(--color-neutral-400);
+    color: rgba(255,255,255,0.6);
     line-height: 1.6;
     max-width: 700px;
   }
@@ -191,6 +196,12 @@ const agents = [
   .pnl-pct.negative { color: #FF394A; }
 
   @media (max-width: 1024px) {
+    .agents-header,
+    .agents-items {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
     .agent-card-inner {
       padding: 2rem;
       flex-direction: column;
@@ -200,12 +211,6 @@ const agents = [
 
     .agent-pnl {
       text-align: left;
-    }
-
-    .agents-header,
-    .agents-items {
-      padding-left: 2rem;
-      padding-right: 2rem;
     }
   }
 
@@ -225,7 +230,6 @@ const agents = [
 </style>
 
 <script>
-  // EXACT Avax Why pattern: GSAP staggered animation
   // Wait for GSAP CDN to load
   const waitForGsap = setInterval(() => {
     if (typeof gsap !== 'undefined') {
