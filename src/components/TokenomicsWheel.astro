@@ -1,179 +1,183 @@
 ---
 ---
-<section class="tokenomics-section" id="tokenomics">
-  <div class="container">
-    <div class="tokenomics-grid">
-      <!-- Left: Copy -->
-      <div class="tokenomics-copy">
-        <div class="section-label">Tokenomics</div>
-        <h2 class="section-title">Self-Sustaining<br><span class="text-gradient">Flywheel Economy</span></h2>
-        <p class="tokenomics-desc">
-          Every agent token is designed for compounding value. Trading fees and profits
-          automatically trigger buybacks — creating deflationary pressure that rewards
-          token holders as agents perform.
-        </p>
+<!-- Sticky tokenomics section -->
+<div class="tokenomics-sticky-outer" id="tokenomics-sticky-outer">
+  <section class="tokenomics-section" id="tokenomics">
+    <div class="container">
+      <div class="tokenomics-grid">
+        <!-- Left: Copy with staged reveals -->
+        <div class="tokenomics-copy">
+          <div class="reveal-mask">
+            <div class="section-label reveal-text" id="tok-label">Tokenomics</div>
+          </div>
+          <div class="reveal-mask">
+            <h2 class="section-title reveal-text" id="tok-title">
+              Self-Sustaining<br><span class="text-gradient">Flywheel Economy</span>
+            </h2>
+          </div>
+          <div class="reveal-mask">
+            <p class="tokenomics-desc reveal-text" id="tok-desc">
+              Every agent token is designed for compounding value. Trading fees and profits
+              automatically trigger buybacks — creating deflationary pressure that rewards
+              token holders as agents perform.
+            </p>
+          </div>
 
-        <div class="tokenomics-flows">
-          <div class="flow-item">
-            <div class="flow-icon" style="color:var(--cyan);background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.3)">
-            <!-- DollarSign -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </div>
-            <div class="flow-content">
-              <div class="flow-title">Trading Fee Buyback</div>
-              <div class="flow-desc">30% of all trading fees go directly to buying back the agent's token from the open market.</div>
+          <div class="tokenomics-flows">
+            <div class="flow-item" id="flow-1">
+              <div class="flow-icon" style="color:var(--cyan);background:rgba(0,240,255,0.1);border:1px solid rgba(0,240,255,0.3)">💸</div>
+              <div class="flow-content">
+                <div class="flow-title">Trading Fee Buyback</div>
+                <div class="flow-desc">30% of all trading fees go directly to buying back the agent's token from the open market.</div>
+              </div>
+              <div class="flow-progress">
+                <div class="flow-bar flow-bar-1"></div>
+              </div>
             </div>
-          </div>
-          <div class="flow-item">
-            <div class="flow-icon" style="color:var(--green);background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">
-              <!-- BarChart3 -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+            <div class="flow-item" id="flow-2">
+              <div class="flow-icon" style="color:var(--green);background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">📊</div>
+              <div class="flow-content">
+                <div class="flow-title">Profit Buyback</div>
+                <div class="flow-desc">When agents hit profit milestones, 20% of realized profits execute additional buybacks.</div>
+              </div>
+              <div class="flow-progress">
+                <div class="flow-bar flow-bar-2"></div>
+              </div>
             </div>
-            <div class="flow-content">
-              <div class="flow-title">Profit Buyback</div>
-              <div class="flow-desc">When agents hit profit milestones, 20% of realized profits execute additional buybacks.</div>
-            </div>
-          </div>
-          <div class="flow-item">
-            <div class="flow-icon" style="color:var(--purple);background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3)">
-              <!-- Flame -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-            </div>
-            <div class="flow-content">
-              <div class="flow-title">Burn Mechanism</div>
-              <div class="flow-desc">50% of bought-back tokens are burned permanently, reducing supply over time.</div>
+            <div class="flow-item" id="flow-3">
+              <div class="flow-icon" style="color:var(--purple);background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3)">🔥</div>
+              <div class="flow-content">
+                <div class="flow-title">Burn Mechanism</div>
+                <div class="flow-desc">50% of bought-back tokens are burned permanently, reducing supply over time.</div>
+              </div>
+              <div class="flow-progress">
+                <div class="flow-bar flow-bar-3"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- Right: Wheel diagram -->
-      <div class="tokenomics-wheel-wrapper">
-        <div class="wheel-container" id="flywheel">
-          <!-- Central -->
-          <div class="wheel-center">
-            <div class="wheel-center-icon">
-              <!-- Zap -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <!-- Right: Wheel diagram with scrubbed rotation -->
+        <div class="tokenomics-wheel-wrapper">
+          <div class="wheel-container" id="flywheel">
+            <!-- Central hub -->
+            <div class="wheel-center" id="wheel-center">
+              <div class="wheel-center-icon">⚡</div>
+              <div class="wheel-center-label mono">TOKEN</div>
             </div>
-            <div class="wheel-center-label mono">TOKEN</div>
+
+            <!-- Ring nodes -->
+            <div class="wheel-node node-top" id="node-fees">
+              <div class="node-icon">💰</div>
+              <div class="node-label">Trading Fees</div>
+            </div>
+
+            <div class="wheel-node node-right" id="node-buyback">
+              <div class="node-icon">🔄</div>
+              <div class="node-label">Buyback</div>
+            </div>
+
+            <div class="wheel-node node-bottom" id="node-burn">
+              <div class="node-icon">🔥</div>
+              <div class="node-label">Burn</div>
+            </div>
+
+            <div class="wheel-node node-left" id="node-value">
+              <div class="node-icon">📈</div>
+              <div class="node-label">Token Value</div>
+            </div>
+
+            <!-- SVG arrows (the rotating ring) -->
+            <svg class="wheel-svg" id="wheel-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <marker id="arrow-cyan" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 z" fill="#00F0FF"/>
+                </marker>
+                <marker id="arrow-green" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 z" fill="#00FF88"/>
+                </marker>
+                <marker id="arrow-purple" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 z" fill="#8B5CF6"/>
+                </marker>
+                <filter id="glow-filter">
+                  <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                  <feMerge>
+                    <feMergeNode in="coloredBlur"/>
+                    <feMergeNode in="SourceGraphic"/>
+                  </feMerge>
+                </filter>
+              </defs>
+
+              <!-- Base ring -->
+              <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(0,240,255,0.08)" stroke-width="1" stroke-dasharray="4 4"/>
+
+              <!-- Arc segments -->
+              <path d="M 150 50 A 100 100 0 0 1 250 150" fill="none" stroke="#00F0FF" stroke-width="2"
+                stroke-dasharray="8 4" marker-end="url(#arrow-cyan)" filter="url(#glow-filter)" opacity="0.9"/>
+              <path d="M 250 150 A 100 100 0 0 1 150 250" fill="none" stroke="#00FF88" stroke-width="2"
+                stroke-dasharray="8 4" marker-end="url(#arrow-green)" filter="url(#glow-filter)" opacity="0.9"/>
+              <path d="M 150 250 A 100 100 0 0 1 50 150" fill="none" stroke="#8B5CF6" stroke-width="2"
+                stroke-dasharray="8 4" marker-end="url(#arrow-purple)" filter="url(#glow-filter)" opacity="0.9"/>
+              <path d="M 50 150 A 100 100 0 0 1 150 50" fill="none" stroke="#00F0FF" stroke-width="2"
+                stroke-dasharray="8 4" marker-end="url(#arrow-cyan)" filter="url(#glow-filter)" opacity="0.9"/>
+            </svg>
           </div>
 
-          <!-- Ring nodes -->
-          <div class="wheel-node node-top" id="node-fees">
-            <div class="node-icon">
-              <!-- DollarSign -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <div class="node-label">Trading Fees</div>
-          </div>
-
-          <div class="wheel-node node-right" id="node-buyback">
-            <div class="node-icon">
-              <!-- RefreshCw -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00FF88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
-            </div>
-            <div class="node-label">Buyback</div>
-          </div>
-
-          <div class="wheel-node node-bottom" id="node-burn">
-            <div class="node-icon">
-              <!-- Flame -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
-            </div>
-            <div class="node-label">Burn</div>
-          </div>
-
-          <div class="wheel-node node-left" id="node-value">
-            <div class="node-icon">
-              <!-- TrendingUp -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
-            </div>
-            <div class="node-label">Token Value</div>
-          </div>
-
-          <!-- SVG arrows -->
-          <svg class="wheel-svg" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <marker id="arrow-cyan" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L6,3 z" fill="#00F0FF"/>
-              </marker>
-              <marker id="arrow-green" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L6,3 z" fill="#00FF88"/>
-              </marker>
-              <marker id="arrow-purple" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
-                <path d="M0,0 L0,6 L6,3 z" fill="#8B5CF6"/>
-              </marker>
-              <filter id="glow-filter">
-                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
-                <feMerge>
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-
-            <!-- Circle path -->
-            <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(0,240,255,0.1)" stroke-width="1" stroke-dasharray="4 4"/>
-
-            <!-- Arc segments -->
-            <path d="M 150 50 A 100 100 0 0 1 250 150" fill="none" stroke="#00F0FF" stroke-width="2"
-              stroke-dasharray="8 4" marker-end="url(#arrow-cyan)" filter="url(#glow-filter)" opacity="0.8"/>
-            <path d="M 250 150 A 100 100 0 0 1 150 250" fill="none" stroke="#00FF88" stroke-width="2"
-              stroke-dasharray="8 4" marker-end="url(#arrow-green)" filter="url(#glow-filter)" opacity="0.8"/>
-            <path d="M 150 250 A 100 100 0 0 1 50 150" fill="none" stroke="#8B5CF6" stroke-width="2"
-              stroke-dasharray="8 4" marker-end="url(#arrow-purple)" filter="url(#glow-filter)" opacity="0.8"/>
-            <path d="M 50 150 A 100 100 0 0 1 150 50" fill="none" stroke="#00F0FF" stroke-width="2"
-              stroke-dasharray="8 4" marker-end="url(#arrow-cyan)" filter="url(#glow-filter)" opacity="0.8"/>
-          </svg>
-        </div>
-
-        <!-- Token supply breakdown -->
-        <div class="supply-bar-section">
-          <div class="supply-title mono">Token Allocation</div>
-          <div class="supply-bars">
-            <div class="supply-item">
-              <div class="supply-label">Trading Pool</div>
-              <div class="supply-bar-wrap">
-                <div class="supply-bar" style="width:40%;background:var(--cyan)"></div>
+          <!-- Token supply breakdown with animated bars -->
+          <div class="supply-bar-section">
+            <div class="supply-title mono">Token Allocation</div>
+            <div class="supply-bars">
+              <div class="supply-item">
+                <div class="supply-label">Trading Pool</div>
+                <div class="supply-bar-wrap">
+                  <div class="supply-bar supply-bar-anim" data-width="40" style="background:var(--cyan)"></div>
+                </div>
+                <div class="supply-pct mono">40%</div>
               </div>
-              <div class="supply-pct mono">40%</div>
-            </div>
-            <div class="supply-item">
-              <div class="supply-label">Buyback Reserve</div>
-              <div class="supply-bar-wrap">
-                <div class="supply-bar" style="width:30%;background:var(--green)"></div>
+              <div class="supply-item">
+                <div class="supply-label">Buyback Reserve</div>
+                <div class="supply-bar-wrap">
+                  <div class="supply-bar supply-bar-anim" data-width="30" style="background:var(--green)"></div>
+                </div>
+                <div class="supply-pct mono">30%</div>
               </div>
-              <div class="supply-pct mono">30%</div>
-            </div>
-            <div class="supply-item">
-              <div class="supply-label">Team / Dev</div>
-              <div class="supply-bar-wrap">
-                <div class="supply-bar" style="width:15%;background:var(--purple)"></div>
+              <div class="supply-item">
+                <div class="supply-label">Team / Dev</div>
+                <div class="supply-bar-wrap">
+                  <div class="supply-bar supply-bar-anim" data-width="15" style="background:var(--purple)"></div>
+                </div>
+                <div class="supply-pct mono">15%</div>
               </div>
-              <div class="supply-pct mono">15%</div>
-            </div>
-            <div class="supply-item">
-              <div class="supply-label">Community</div>
-              <div class="supply-bar-wrap">
-                <div class="supply-bar" style="width:15%;background:#FFE600"></div>
+              <div class="supply-item">
+                <div class="supply-label">Community</div>
+                <div class="supply-bar-wrap">
+                  <div class="supply-bar supply-bar-anim" data-width="15" style="background:#FFE600"></div>
+                </div>
+                <div class="supply-pct mono">15%</div>
               </div>
-              <div class="supply-pct mono">15%</div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
 
 <style>
+  .tokenomics-sticky-outer {
+    position: relative;
+  }
+
   .tokenomics-section {
     padding: var(--space-3xl) 0;
     position: relative;
     background: var(--bg-surface);
     border-top: 1px solid var(--bg-border);
     border-bottom: 1px solid var(--bg-border);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .tokenomics-grid {
@@ -201,6 +205,9 @@
     display: flex;
     gap: 1rem;
     align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-30px);
+    position: relative;
   }
 
   .flow-icon {
@@ -210,20 +217,36 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.25rem;
     flex-shrink: 0;
   }
 
-  .flow-title {
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-bottom: 0.25rem;
+  .flow-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
+  .flow-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+
+  .flow-content { flex: 1; }
+
+  .flow-progress {
+    position: absolute;
+    bottom: -8px;
+    left: 56px;
+    right: 0;
+    height: 2px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    overflow: hidden;
   }
 
-  .flow-desc {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+  .flow-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 1s ease;
   }
+
+  .flow-bar-1 { background: var(--cyan); }
+  .flow-bar-2 { background: var(--green); }
+  .flow-bar-3 { background: var(--purple); }
 
   /* Wheel */
   .tokenomics-wheel-wrapper {
@@ -234,8 +257,8 @@
 
   .wheel-container {
     position: relative;
-    width: 280px;
-    height: 280px;
+    width: 300px;
+    height: 300px;
     margin: 0 auto;
   }
 
@@ -244,7 +267,8 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    animation: rotate-slow 20s linear infinite;
+    transform-origin: center center;
+    will-change: transform;
   }
 
   .wheel-center {
@@ -263,9 +287,10 @@
     justify-content: center;
     z-index: 2;
     box-shadow: 0 0 30px rgba(0,240,255,0.3);
+    will-change: transform;
   }
 
-  .wheel-center-icon { display: flex; align-items: center; justify-content: center; }
+  .wheel-center-icon { font-size: 1.5rem; }
   .wheel-center-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; color: var(--cyan); }
 
   .wheel-node {
@@ -276,15 +301,21 @@
     gap: 0.25rem;
     width: 64px;
     z-index: 3;
+    transition: all 0.4s ease;
   }
 
-  .node-icon { display: flex; align-items: center; justify-content: center; }
+  .node-icon { font-size: 1.4rem; }
   .node-label { font-size: 0.65rem; font-family: var(--font-mono); font-weight: 600; color: var(--text-secondary); text-align: center; line-height: 1.2; }
 
   .node-top    { top: 0; left: 50%; transform: translateX(-50%); }
   .node-right  { right: 0; top: 50%; transform: translateY(-50%); }
   .node-bottom { bottom: 0; left: 50%; transform: translateX(-50%); }
   .node-left   { left: 0; top: 50%; transform: translateY(-50%); }
+
+  .wheel-node.active .node-icon {
+    filter: drop-shadow(0 0 8px var(--cyan));
+    transform: scale(1.2);
+  }
 
   /* Supply bars */
   .supply-bar-section {
@@ -303,11 +334,7 @@
     margin-bottom: 1rem;
   }
 
-  .supply-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
+  .supply-bars { display: flex; flex-direction: column; gap: 0.75rem; }
 
   .supply-item {
     display: grid;
@@ -327,8 +354,9 @@
 
   .supply-bar {
     height: 100%;
+    width: 0%;
     border-radius: 4px;
-    transition: width 1s ease;
+    transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .supply-pct { font-size: 0.78rem; font-weight: 700; color: var(--text-primary); text-align: right; }
@@ -338,3 +366,92 @@
     .wheel-container { margin: 0 auto; }
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Header reveals ─────────────────────────────────
+  gsap.set(['#tok-label', '#tok-title', '#tok-desc'], { y: 50, opacity: 0 });
+
+  ScrollTrigger.create({
+    trigger: '.tokenomics-section',
+    start: 'top 75%',
+    onEnter: () => {
+      gsap.to('#tok-label', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+      gsap.to('#tok-title', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.1 });
+      gsap.to('#tok-desc', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.2 });
+
+      // Flow items slide in with stagger
+      gsap.to(['#flow-1', '#flow-2', '#flow-3'], {
+        x: 0,
+        opacity: 1,
+        duration: 0.7,
+        stagger: 0.2,
+        ease: 'power3.out',
+        delay: 0.4,
+        onComplete: () => {
+          // Fill flow progress bars
+          document.querySelectorAll('.flow-bar').forEach((bar, i) => {
+            setTimeout(() => {
+              (bar as HTMLElement).style.width = '100%';
+            }, i * 200);
+          });
+        }
+      });
+
+      // Supply bars fill
+      setTimeout(() => {
+        document.querySelectorAll('.supply-bar-anim').forEach(bar => {
+          const width = bar.getAttribute('data-width') || '0';
+          (bar as HTMLElement).style.width = `${width}%`;
+        });
+      }, 800);
+    }
+  });
+
+  // ─── Scrubbed flywheel rotation ──────────────────────
+  // The SVG ring rotates based on scroll progress
+  gsap.to('#wheel-svg', {
+    rotation: 360,
+    transformOrigin: '150px 150px', // SVG viewBox center
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.tokenomics-section',
+      start: 'top 60%',
+      end: 'bottom 40%',
+      scrub: 2,
+    }
+  });
+
+  // Wheel center pulsing glow (CSS-driven but enhanced)
+  gsap.to('#wheel-center', {
+    boxShadow: '0 0 50px rgba(0,240,255,0.6), 0 0 100px rgba(0,240,255,0.3)',
+    duration: 1.5,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut',
+  });
+
+  // Node activation sequence based on scroll
+  const nodes = ['#node-fees', '#node-buyback', '#node-burn', '#node-value'];
+  
+  ScrollTrigger.create({
+    trigger: '.tokenomics-section',
+    start: 'top 60%',
+    end: 'bottom 40%',
+    scrub: 1,
+    onUpdate: (self) => {
+      const progress = self.progress;
+      const activeIdx = Math.floor(progress * 4);
+      nodes.forEach((sel, i) => {
+        const el = document.querySelector(sel);
+        if (el) {
+          el.classList.toggle('active', i === activeIdx);
+        }
+      });
+    }
+  });
+</script>

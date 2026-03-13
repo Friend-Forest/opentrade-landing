@@ -384,82 +384,88 @@ const agents = [
   });
 
   // ─── Card stack scroll animation ─────────────────────
-  const cards = document.querySelectorAll('.agent-card-stack');
+  // Pure scrub approach: map scroll progress → card states directly.
+  // No GSAP timeline. Just onUpdate with direct gsap.set calls.
+  // This avoids timeline scrub complications entirely.
+
+  const cards = Array.from(document.querySelectorAll('.agent-card-stack')) as HTMLElement[];
   const totalCards = cards.length;
 
-  // Initial stack positioning: cards offset downward and scaled
-  cards.forEach((card, i) => {
-    gsap.set(card, {
-      y: i * 12,
-      scale: 1 - (i * 0.03),
-      opacity: i < 3 ? 1 - (i * 0.15) : 0,
-      zIndex: totalCards - i,
+  function applyCardStates(totalProgress: number) {
+    cards.forEach((card, i) => {
+      const cardFill = document.getElementById(`card-progress-${i}`);
+      
+      // Each card has an equal share of progress [segStart, segEnd]
+      const segStart = i / totalCards;
+      const segEnd = (i + 1) / totalCards;
+      const segSize = 1 / totalCards;
+
+      // localProg: 0 = card just entered, 1 = card just exited
+      const localProg = (totalProgress - segStart) / segSize;
+
+      if (localProg < 0) {
+        // Upcoming card — in the stack below the active card
+        const depthBehind = Math.round(-localProg * totalCards);
+        const clampedDepth = Math.min(depthBehind, totalCards - 1);
+        gsap.set(card, {
+          y: clampedDepth * 14,
+          scale: Math.max(0.7, 1 - clampedDepth * 0.04),
+          opacity: Math.max(0, 1 - clampedDepth * 0.18),
+          zIndex: totalCards - clampedDepth,
+        });
+        if (cardFill) cardFill.style.width = '0%';
+
+      } else if (localProg < 1) {
+        // Active card — front and center
+        // First half: card arrives and sits, second half: card starts to exit
+        const exitThreshold = 0.7;
+        
+        if (localProg < exitThreshold) {
+          // Active: scale up to 1, full opacity, top z-index
+          const arrivalProg = localProg / exitThreshold; // 0→1
+          gsap.set(card, {
+            y: gsap.utils.interpolate(0, -6, arrivalProg),
+            scale: gsap.utils.interpolate(1, 1.02, arrivalProg),
+            opacity: 1,
+            zIndex: totalCards + 2,
+          });
+          if (cardFill) cardFill.style.width = `${(localProg / exitThreshold) * 70}%`;
+        } else {
+          // Exiting: fly off upward
+          const exitProg = (localProg - exitThreshold) / (1 - exitThreshold); // 0→1
+          gsap.set(card, {
+            y: gsap.utils.interpolate(-6, -180, exitProg),
+            scale: gsap.utils.interpolate(1.02, 0.9, exitProg),
+            opacity: gsap.utils.interpolate(1, 0, exitProg * 1.5),
+            zIndex: totalCards + 2,
+          });
+          if (cardFill) cardFill.style.width = `${70 + exitProg * 30}%`;
+        }
+
+      } else {
+        // Already exited
+        gsap.set(card, {
+          y: -200,
+          scale: 0.88,
+          opacity: 0,
+          zIndex: 0,
+        });
+        if (cardFill) cardFill.style.width = '100%';
+      }
     });
-  });
+  }
+
+  // Initialize
+  applyCardStates(0);
 
   ScrollTrigger.create({
     trigger: '#agents-stack-outer',
     pin: '#agents-stack-inner',
     start: 'top top',
     end: 'bottom bottom',
-    scrub: 1,
+    scrub: 1.2,
     onUpdate: (self) => {
-      const totalProgress = self.progress;
-      const cardProgress = totalProgress * totalCards;
-
-      cards.forEach((card, i) => {
-        const cardEl = card as HTMLElement;
-        const cardFill = document.getElementById(`card-progress-${i}`);
-
-        // When is this card "active"?
-        const cardStart = i / totalCards;
-        const cardEnd = (i + 1) / totalCards;
-        const localProgress = Math.max(0, Math.min(1, (totalProgress - cardStart) / (1 / totalCards)));
-
-        if (localProgress < 0) {
-          // Card not reached yet - in stack below
-          gsap.set(cardEl, {
-            y: (i - Math.floor(cardProgress)) * 12,
-            scale: 1 - ((i - Math.floor(cardProgress)) * 0.03),
-            opacity: i - Math.floor(cardProgress) < 3 ? 1 - ((i - Math.floor(cardProgress)) * 0.15) : 0,
-            zIndex: totalCards - i,
-            rotateX: 0,
-          });
-        } else if (localProgress < 1) {
-          // Active card - fill progress bar and slight parallax
-          if (cardFill) cardFill.style.width = `${localProgress * 100}%`;
-
-          gsap.set(cardEl, {
-            y: gsap.utils.interpolate(0, -30, localProgress),
-            opacity: 1,
-            scale: gsap.utils.interpolate(1, 1.02, localProgress * 0.3),
-            zIndex: totalCards + 1,
-            rotateX: 0,
-          });
-
-          // Re-stack cards behind
-          cards.forEach((otherCard, j) => {
-            if (j > i) {
-              const behind = j - i;
-              gsap.set(otherCard, {
-                y: behind * 12,
-                scale: 1 - (behind * 0.03),
-                opacity: behind < 3 ? 1 - (behind * 0.15) : 0,
-                zIndex: totalCards - behind,
-              });
-            }
-          });
-        } else {
-          // Card completed - slide out upward
-          if (cardFill) cardFill.style.width = '100%';
-          gsap.set(cardEl, {
-            y: gsap.utils.interpolate(-30, -120, (totalProgress - cardEnd) * totalCards),
-            opacity: gsap.utils.interpolate(1, 0, (totalProgress - cardEnd) * totalCards * 2),
-            scale: 0.95,
-            zIndex: 0,
-          });
-        }
-      });
+      applyCardStates(self.progress);
     }
   });
 </script>

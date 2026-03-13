@@ -478,12 +478,13 @@
     scrub: 1,
     onUpdate: (self) => {
       const progress = self.progress;
-      // Translate track horizontally
-      // 3 cards, each viewport wide. Move from 0% to 200%
-      const xMove = progress * (200 / 3 * 2); // Goes from 0 to 66.7%
+      // Track is 300% wide (3 cards × 100vw each).
+      // To show card 1: xPercent = 0
+      // To show card 2: xPercent = -33.333 (of 300% = -100vw)
+      // To show card 3: xPercent = -66.666 (of 300% = -200vw)
+      // So total xPercent range: 0 → -66.666
       if (track) {
-        // Move 2/3 of the track width (leaving last card visible)
-        gsap.set(track, { xPercent: -(progress * 200 / 3 * 1.5) });
+        gsap.set(track, { xPercent: -(progress * 66.666) });
       }
       // Progress bar
       if (progressFill) progressFill.style.width = `${progress * 100}%`;
@@ -497,15 +498,14 @@
   // Dot click navigation (scroll to section position)
   dots.forEach((dot, i) => {
     dot.addEventListener('click', () => {
-      const trigger = ScrollTrigger.getById('how-scroll-trigger');
-      if (trigger) {
-        const progress = i / 3;
-        gsap.to(window, {
-          scrollTo: trigger.start + (trigger.end - trigger.start) * progress,
-          duration: 0.8,
-          ease: 'power2.inOut',
-        });
-      }
+      const outer = document.getElementById('how-sticky-outer');
+      if (!outer) return;
+      const rect = outer.getBoundingClientRect();
+      const sectionTop = window.scrollY + rect.top;
+      const sectionHeight = outer.offsetHeight;
+      const progress = i / 3;
+      const targetY = sectionTop + sectionHeight * progress;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
   });
 </script>

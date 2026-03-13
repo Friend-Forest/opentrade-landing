@@ -6,49 +6,43 @@
     <div class="deploy-left">
       <div class="deploy-left-bg grid-bg"></div>
       <div class="deploy-left-content">
-        <div class="section-label">Launch Now</div>
-        <h2 class="deploy-heading">
-          Ready to<br>
-          <span class="text-gradient">Deploy Your<br>First Agent?</span>
-        </h2>
-        <p class="deploy-desc">
-          Go from zero to live trading agent in under 5 minutes.
-          No trading experience required — your AI does the work.
-          You earn the alpha.
-        </p>
+        <div class="reveal-mask">
+          <div class="section-label reveal-text" id="deploy-label">Launch Now</div>
+        </div>
+        <div class="reveal-mask">
+          <h2 class="deploy-heading reveal-text" id="deploy-heading">
+            Ready to<br>
+            <span class="text-gradient">Deploy Your<br>First Agent?</span>
+          </h2>
+        </div>
+        <div class="reveal-mask">
+          <p class="deploy-desc reveal-text" id="deploy-desc">
+            Go from zero to live trading agent in under 5 minutes.
+            No trading experience required — your AI does the work.
+            You earn the alpha.
+          </p>
+        </div>
 
-        <div class="deploy-features">
-          <div class="deploy-feat">
-            <span class="feat-icon">
-              <!-- Zap -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            </span>
+        <div class="deploy-features" id="deploy-features">
+          <div class="deploy-feat feat-slide">
+            <span class="feat-icon">⚡</span>
             <span>Live in &lt; 5 minutes</span>
           </div>
-          <div class="deploy-feat">
-            <span class="feat-icon">
-              <!-- Lock -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </span>
+          <div class="deploy-feat feat-slide">
+            <span class="feat-icon">🔒</span>
             <span>Non-custodial — you own your keys</span>
           </div>
-          <div class="deploy-feat">
-            <span class="feat-icon">
-              <!-- Bot -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
-            </span>
+          <div class="deploy-feat feat-slide">
+            <span class="feat-icon">🤖</span>
             <span>AI manages risk automatically</span>
           </div>
-          <div class="deploy-feat">
-            <span class="feat-icon">
-              <!-- Gem -->
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="6 3 18 3 22 9 12 22 2 9"/><polyline points="2 9 12 9 22 9"/><line x1="12" y1="9" x2="6" y2="3"/><line x1="12" y1="9" x2="18" y2="3"/></svg>
-            </span>
+          <div class="deploy-feat feat-slide">
+            <span class="feat-icon">💎</span>
             <span>Agent token launches on deploy</span>
           </div>
         </div>
 
-        <div class="deploy-actions">
+        <div class="deploy-actions" id="deploy-actions">
           <a href="https://app.opentrade.io" target="_blank" class="btn btn-primary" style="font-size:1.1rem;padding:1rem 2.5rem">
             Launch App
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M1 9h16M10 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -60,78 +54,76 @@
       </div>
     </div>
 
-    <!-- Right: Code snippet -->
+    <!-- Right: Code snippet (reveals on scroll) -->
     <div class="deploy-right">
       <div class="deploy-right-bg"></div>
       <div class="deploy-right-content">
-        <div class="terminal deploy-terminal">
+        <div class="terminal deploy-terminal" id="deploy-terminal">
           <div class="terminal-header">
             <div class="terminal-dot" style="background:#FF5F56"></div>
             <div class="terminal-dot" style="background:#FFBD2E"></div>
             <div class="terminal-dot" style="background:#27C93F"></div>
             <span style="margin-left:0.5rem;font-size:0.7rem;color:#8090b0;font-family:var(--font-mono)">deploy.sh</span>
           </div>
-          <div class="terminal-body deploy-code" style="font-size:0.82rem">
-            <div class="code-line">
+          <div class="terminal-body deploy-code" style="font-size:0.82rem" id="deploy-code-body">
+            <!-- Lines revealed via scroll -->
+            <div class="code-line code-hidden" data-line="0">
               <span class="code-comment"># Install OpenTrade CLI</span>
             </div>
-            <div class="code-line">
+            <div class="code-line code-hidden" data-line="1">
               <span class="code-prompt">$</span>
               <span class="code-cmd"> npm install -g @opentrade/cli</span>
             </div>
-            <div class="code-line code-blank"></div>
-            <div class="code-line">
+            <div class="code-line code-blank code-hidden" data-line="2"></div>
+            <div class="code-line code-hidden" data-line="3">
               <span class="code-comment"># Login with your wallet</span>
             </div>
-            <div class="code-line">
+            <div class="code-line code-hidden" data-line="4">
               <span class="code-prompt">$</span>
               <span class="code-cmd"> opentrade auth --chain base</span>
             </div>
-            <div class="code-line code-blank"></div>
-            <div class="code-line">
+            <div class="code-line code-blank code-hidden" data-line="5"></div>
+            <div class="code-line code-hidden" data-line="6">
               <span class="code-comment"># Create your agent config</span>
             </div>
-            <div class="code-line">
+            <div class="code-line code-hidden" data-line="7">
               <span class="code-prompt">$</span>
               <span class="code-cmd"> opentrade agent create</span>
             </div>
-            <div class="code-line code-output">
+            <div class="code-line code-output code-hidden" data-line="8">
               <span style="color:#00FF88">? Agent name:</span>
               <span style="color:#fff"> Alpha-8</span>
             </div>
-            <div class="code-line code-output">
+            <div class="code-line code-output code-hidden" data-line="9">
               <span style="color:#00FF88">? Strategy:</span>
               <span style="color:#fff"> momentum</span>
             </div>
-            <div class="code-line code-output">
+            <div class="code-line code-output code-hidden" data-line="10">
               <span style="color:#00FF88">? Max risk per trade:</span>
               <span style="color:#fff"> 2%</span>
             </div>
-            <div class="code-line code-blank"></div>
-            <div class="code-line">
+            <div class="code-line code-blank code-hidden" data-line="11"></div>
+            <div class="code-line code-hidden" data-line="12">
               <span class="code-prompt">$</span>
               <span class="code-cmd"> opentrade deploy --agent Alpha-8</span>
             </div>
-            <div class="code-line code-output">
+            <div class="code-line code-output code-hidden" data-line="13">
               <span style="color:#00F0FF">▶ Deploying agent token...</span>
             </div>
-            <div class="code-line code-output">
+            <div class="code-line code-output code-hidden" data-line="14">
               <span style="color:#00FF88">✓ Token: ALPHA8 deployed on Base</span>
             </div>
-            <div class="code-line code-output">
+            <div class="code-line code-output code-hidden" data-line="15">
               <span style="color:#00FF88">✓ Agent live. Monitoring markets.</span>
             </div>
-            <div class="code-line code-output">
-              <span style="color:#8B5CF6;display:flex;align-items:center;gap:0.25rem">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                First trade executed: +0.8%
-              </span>
+            <div class="code-line code-output code-hidden" data-line="16">
+              <span style="color:#8B5CF6">⚡ First trade executed: +0.8%</span>
             </div>
           </div>
         </div>
 
         <!-- Quick stats -->
-        <div class="deploy-quick-stats">
+        <div class="deploy-quick-stats" id="deploy-quick-stats">
           <div class="qs-item">
             <div class="qs-value glow-cyan mono">$0</div>
             <div class="qs-label">Deploy cost</div>
@@ -215,14 +207,18 @@
     gap: 0.75rem;
     font-size: 0.9rem;
     color: var(--text-secondary);
+    opacity: 0;
+    transform: translateX(-20px);
   }
 
-  .feat-icon { display: flex; align-items: center; flex-shrink: 0; }
+  .feat-icon { font-size: 1.1rem; }
 
   .deploy-actions {
     display: flex;
     gap: 1rem;
     flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
   }
 
   /* Right */
@@ -248,6 +244,8 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    opacity: 0;
+    transform: translateX(30px);
   }
 
   .deploy-terminal {
@@ -256,12 +254,24 @@
 
   .deploy-code { line-height: 2; }
 
+  /* Code lines — hidden by default, revealed via GSAP */
   .code-line { display: flex; align-items: baseline; gap: 0.25rem; }
   .code-blank { height: 0.5rem; }
   .code-comment { color: #3d4f70; font-style: italic; }
   .code-prompt { color: var(--green); font-weight: 700; }
   .code-cmd { color: var(--text-primary); }
   .code-output { margin-left: 1rem; }
+
+  .code-hidden {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .code-hidden.revealed {
+    opacity: 1;
+    transform: translateX(0);
+  }
 
   /* Quick stats */
   .deploy-quick-stats {
@@ -302,3 +312,61 @@
     .deploy-right { min-height: auto; }
   }
 </style>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Left side reveals ───────────────────────────────
+  gsap.set(['#deploy-label', '#deploy-heading', '#deploy-desc'], { y: 50, opacity: 0 });
+
+  ScrollTrigger.create({
+    trigger: '.deploy-section',
+    start: 'top 75%',
+    onEnter: () => {
+      // Text reveals
+      gsap.to('#deploy-label', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+      gsap.to('#deploy-heading', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.1 });
+      gsap.to('#deploy-desc', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.2 });
+
+      // Feature list slides in
+      gsap.to('.feat-slide', {
+        x: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: 'power3.out',
+        delay: 0.4,
+      });
+
+      // Action buttons
+      gsap.to('#deploy-actions', {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power3.out',
+        delay: 0.9,
+      });
+
+      // Right side slides in
+      gsap.to('.deploy-right-content', {
+        x: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: 0.2,
+        onComplete: () => {
+          // Reveal code lines one by one
+          const lines = document.querySelectorAll('.code-hidden');
+          lines.forEach((line, i) => {
+            setTimeout(() => {
+              line.classList.add('revealed');
+            }, i * 120);
+          });
+        }
+      });
+    }
+  });
+</script>

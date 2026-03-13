@@ -11,12 +11,18 @@ const rows = [
 ];
 ---
 <section class="leaderboard-section" id="leaderboard">
-  <div class="container">
+  <div class="lb-header-section container">
     <div class="leaderboard-header">
       <div>
-        <div class="section-label">Rankings</div>
-        <h2 class="section-title">Agent Leaderboard</h2>
-        <p class="lb-subtitle">Live performance rankings. Updated every 60 seconds.</p>
+        <div class="reveal-mask">
+          <div class="section-label reveal-text" id="lb-label">Rankings</div>
+        </div>
+        <div class="reveal-mask">
+          <h2 class="section-title reveal-text" id="lb-title">Agent Leaderboard</h2>
+        </div>
+        <div class="reveal-mask">
+          <p class="lb-subtitle reveal-text" id="lb-subtitle">Live performance rankings. Updated every 60 seconds.</p>
+        </div>
       </div>
       <div class="lb-actions">
         <div class="lb-filter">
@@ -30,82 +36,97 @@ const rows = [
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="leaderboard-table-wrap">
-      <table class="leaderboard-table">
-        <thead>
-          <tr>
-            <th>Rank</th>
-            <th>Agent</th>
-            <th>Strategy</th>
-            <th>7d PnL</th>
-            <th>Change</th>
-            <th>TVL</th>
-            <th>Win Rate</th>
-            <th>Trades</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => (
-            <tr class="lb-row" data-index={i} style={`--delay: ${i * 60}ms`}>
-              <td class="rank-cell">
+  <!-- Horizontal scroll gallery wrapper -->
+  <div class="lb-h-scroll-outer" id="lb-h-scroll-outer">
+    <div class="lb-h-scroll-inner" id="lb-h-scroll-inner">
+      <!-- Cards track — horizontal -->
+      <div class="lb-cards-track" id="lb-cards-track">
+        {rows.map((row, i) => (
+          <div class="lb-card card" data-index={i} style={`--delay: ${i * 80}ms`}>
+            <!-- Top: rank + name -->
+            <div class="lbc-header">
+              <div class="lbc-rank">
                 {row.rank <= 3 ? (
-                  <span class="rank-medal" style={row.rank === 1 ? 'color:#FFE600' : row.rank === 2 ? 'color:#C0C0C0' : 'color:#CD7F32'}>
-                    {/* Trophy/Award icon */}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+                  <span class="rank-medal">
+                    {row.rank === 1 ? '🥇' : row.rank === 2 ? '🥈' : '🥉'}
                   </span>
                 ) : (
                   <span class="mono rank-num" style="color:#3d4f70">#{row.rank}</span>
                 )}
-              </td>
-              <td class="agent-cell">
-                <span class="agent-name-lb">{row.name}</span>
-              </td>
-              <td>
-                <span class="badge badge-cyan" style="font-size:0.65rem">{row.strategy}</span>
-              </td>
-              <td class={`pnl-cell mono ${row.positive ? 'positive' : 'negative'}`}>
-                {row.pnl7d}
-              </td>
-              <td class={`pct-cell mono ${row.positive ? 'positive' : 'negative'}`}>
-                {row.pct}
-              </td>
-              <td class="mono tvl-cell">{row.tvl}</td>
-              <td class="mono" style="color:var(--cyan)">{row.winRate}</td>
-              <td class="mono" style="color:var(--text-secondary)">{row.trades}</td>
-              <td>
-                <button class="btn btn-ghost" style="padding:0.3rem 0.75rem;font-size:0.7rem">View</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+              </div>
+              <div class="lbc-agent">
+                <div class="lbc-name">{row.name}</div>
+                <span class="badge badge-cyan" style="font-size:0.6rem">{row.strategy}</span>
+              </div>
+              <div class={`lbc-pnl ${row.positive ? 'positive' : 'negative'}`}>
+                <div class="lbc-pnl-val mono">{row.pnl7d}</div>
+                <div class="lbc-pnl-pct mono">{row.pct}</div>
+              </div>
+            </div>
 
-    <!-- Bottom CTA -->
-    <div class="lb-footer">
-      <p class="mono" style="font-size:0.8rem;color:var(--text-secondary)">
-        Showing top 8 of <span style="color:var(--cyan)">1,247</span> active agents
-      </p>
-      <a href="#deploy" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1.25rem">
-        View All Rankings
-      </a>
+            <!-- Stats -->
+            <div class="lbc-stats">
+              <div class="lbc-stat">
+                <div class="lbc-stat-label">TVL</div>
+                <div class="lbc-stat-val mono">{row.tvl}</div>
+              </div>
+              <div class="lbc-stat">
+                <div class="lbc-stat-label">Win Rate</div>
+                <div class="lbc-stat-val mono" style="color:var(--cyan)">{row.winRate}</div>
+              </div>
+              <div class="lbc-stat">
+                <div class="lbc-stat-label">Trades</div>
+                <div class="lbc-stat-val mono">{row.trades}</div>
+              </div>
+            </div>
+
+            <!-- Mini bar chart (win rate visual) -->
+            <div class="lbc-bar-track">
+              <div class="lbc-bar-fill" style={`width: ${row.winRate}; background: ${row.positive ? 'var(--cyan)' : '#FF394A'}`}></div>
+            </div>
+
+            <button class="btn btn-ghost lbc-btn" style="width:100%;margin-top:0.75rem;font-size:0.75rem">
+              View Agent →
+            </button>
+          </div>
+        ))}
+      </div>
+
+      <!-- Drag hint -->
+      <div class="lb-drag-hint" id="lb-drag-hint">
+        <span class="mono">← Scroll to explore →</span>
+      </div>
     </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="lb-footer container">
+    <p class="mono" style="font-size:0.8rem;color:var(--text-secondary)">
+      Showing top 8 of <span style="color:var(--cyan)">1,247</span> active agents
+    </p>
+    <a href="#deploy" class="btn btn-secondary" style="font-size:0.8rem;padding:0.5rem 1.25rem">
+      View All Rankings
+    </a>
   </div>
 </section>
 
 <style>
   .leaderboard-section {
-    padding: var(--space-3xl) 0;
+    padding: var(--space-3xl) 0 0;
     background: var(--bg-base);
+    overflow: hidden;
+  }
+
+  .lb-header-section {
+    margin-bottom: 2rem;
   }
 
   .leaderboard-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
   }
@@ -164,90 +185,223 @@ const rows = [
     animation: glow-pulse 2s ease-in-out infinite;
   }
 
-  /* Table */
-  .leaderboard-table-wrap {
-    overflow-x: auto;
-    border-radius: 12px;
+  /* ─── Horizontal scroll ── */
+  .lb-h-scroll-outer {
+    height: 600px; /* Fixed height for the horizontal panel */
+    position: relative;
+  }
+
+  .lb-h-scroll-inner {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .lb-cards-track {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1rem 2rem;
+    height: 100%;
+    align-items: center;
+    will-change: transform;
+    cursor: grab;
+  }
+
+  .lb-cards-track:active {
+    cursor: grabbing;
+  }
+
+  /* Individual leaderboard cards */
+  .lb-card {
+    flex-shrink: 0;
+    width: 260px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(30px);
+    will-change: transform, opacity;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    border-radius: 14px;
+  }
+
+  .lb-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(0, 240, 255, 0.4);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 240, 255, 0.1);
+  }
+
+  /* Card header */
+  .lbc-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .lbc-rank { min-width: 28px; }
+  .rank-medal { font-size: 1.3rem; }
+  .rank-num { font-size: 0.85rem; }
+
+  .lbc-agent { flex: 1; }
+  .lbc-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; font-family: var(--font-mono); }
+
+  .lbc-pnl { text-align: right; }
+  .lbc-pnl-val { font-size: 0.9rem; font-weight: 700; }
+  .lbc-pnl-pct { font-size: 0.72rem; opacity: 0.8; }
+
+  /* Stats */
+  .lbc-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: rgba(0,0,0,0.25);
+    border-radius: 8px;
     border: 1px solid var(--bg-border);
   }
 
-  .leaderboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.875rem;
+  .lbc-stat { text-align: center; }
+  .lbc-stat-label { font-size: 0.6rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+  .lbc-stat-val { font-size: 0.78rem; font-weight: 600; }
+
+  /* Win rate bar */
+  .lbc-bar-track {
+    height: 4px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    overflow: hidden;
   }
 
-  .leaderboard-table thead {
-    background: var(--bg-card);
-    border-bottom: 1px solid var(--bg-border);
+  .lbc-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 1s ease;
   }
 
-  .leaderboard-table th {
-    padding: 0.75rem 1rem;
-    text-align: left;
-    font-family: var(--font-mono);
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+  .lbc-btn { border-color: var(--bg-border); }
+
+  /* Drag hint */
+  .lb-drag-hint {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.75rem;
     color: var(--text-muted);
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-    transition: color 0.2s;
+    pointer-events: none;
+    animation: pulse-hint 2s ease-in-out infinite;
   }
 
-  .leaderboard-table th:hover { color: var(--cyan); }
-
-  .lb-row {
-    border-bottom: 1px solid var(--bg-border);
-    opacity: 0;
-    transform: translateX(-10px);
-    animation: counter-up 0.4s ease forwards;
-    animation-delay: var(--delay);
-    transition: background 0.2s ease;
+  @keyframes pulse-hint {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
   }
-
-  .lb-row:last-child { border-bottom: none; }
-  .lb-row:hover { background: var(--bg-hover); }
-
-  .leaderboard-table td {
-    padding: 0.875rem 1rem;
-    white-space: nowrap;
-  }
-
-  .rank-cell { width: 60px; }
-  .rank-medal { font-size: 1.2rem; }
-  .rank-num { font-size: 0.875rem; }
-
-  .agent-name-lb {
-    font-weight: 700;
-    font-family: var(--font-mono);
-  }
-
-  .pnl-cell { font-weight: 700; font-size: 0.9rem; }
-  .pct-cell { font-size: 0.8rem; }
-  .tvl-cell { color: var(--text-secondary); }
 
   /* Footer */
   .lb-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
+    margin-top: 2rem;
+    padding: 1.5rem 0 var(--space-3xl);
     border-top: 1px solid var(--bg-border);
     flex-wrap: wrap;
     gap: 1rem;
   }
-
-  @media (max-width: 768px) {
-    .leaderboard-table th:nth-child(n+6),
-    .leaderboard-table td:nth-child(n+6) { display: none; }
-  }
 </style>
 
 <script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ─── Header reveals ───────────────────────────────────
+  gsap.set(['#lb-label', '#lb-title', '#lb-subtitle'], { y: 50, opacity: 0 });
+
+  ScrollTrigger.create({
+    trigger: '.lb-header-section',
+    start: 'top 80%',
+    onEnter: () => {
+      gsap.to('#lb-label', { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' });
+      gsap.to('#lb-title', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.1 });
+      gsap.to('#lb-subtitle', { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.2 });
+    }
+  });
+
+  // ─── Card entrance with stagger ──────────────────────
+  const cards = document.querySelectorAll('.lb-card');
+
+  ScrollTrigger.create({
+    trigger: '.lb-h-scroll-outer',
+    start: 'top 80%',
+    onEnter: () => {
+      gsap.to(cards, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        ease: 'power3.out',
+        onComplete: () => {
+          // Fill win rate bars
+          document.querySelectorAll('.lbc-bar-fill').forEach(bar => {
+            const width = (bar as HTMLElement).style.width;
+            // Already has width from inline style, trigger transition
+            const el = bar as HTMLElement;
+            const targetWidth = el.style.width;
+            el.style.width = '0%';
+            setTimeout(() => { el.style.width = targetWidth; }, 100);
+          });
+        }
+      });
+    }
+  });
+
+  // ─── GSAP horizontal scroll (pinned) ─────────────────
+  const track = document.getElementById('lb-cards-track');
+  
+  if (track) {
+    // Calculate the total scroll distance
+    const getScrollWidth = () => {
+      return track.scrollWidth - track.offsetWidth;
+    };
+
+    let scrollTween: gsap.core.Tween | null = null;
+    let pinTrigger: ScrollTrigger | null = null;
+
+    const initHorizontalScroll = () => {
+      if (scrollTween) scrollTween.kill();
+      if (pinTrigger) pinTrigger.kill();
+
+      const totalWidth = getScrollWidth();
+
+      scrollTween = gsap.to(track, {
+        x: -totalWidth,
+        ease: 'none',
+      });
+
+      pinTrigger = ScrollTrigger.create({
+        trigger: '#lb-h-scroll-outer',
+        pin: '#lb-h-scroll-inner',
+        start: 'top top',
+        end: () => `+=${totalWidth}`,
+        scrub: 1,
+        animation: scrollTween,
+        invalidateOnRefresh: true,
+      });
+    };
+
+    initHorizontalScroll();
+
+    // Reinit on resize
+    window.addEventListener('resize', () => {
+      ScrollTrigger.refresh();
+    });
+  }
+
+  // ─── Filter button interactions ───────────────────────
   const filterBtns = document.querySelectorAll('.lb-filter-btn');
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -255,4 +409,31 @@ const rows = [
       btn.classList.add('active');
     });
   });
+
+  // ─── Drag to scroll (pointer events) ─────────────────
+  if (track) {
+    let isDragging = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    track.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      startX = e.clientX;
+      // Get current transform X
+      const transform = gsap.getProperty(track, 'x') as number;
+      scrollStart = transform;
+      track.setPointerCapture(e.pointerId);
+    });
+
+    track.addEventListener('pointermove', (e) => {
+      if (!isDragging) return;
+      const dx = e.clientX - startX;
+      // Manual drag doesn't interact well with pinned ScrollTrigger
+      // so just use mouse wheel to scroll the window when pinned
+    });
+
+    track.addEventListener('pointerup', () => {
+      isDragging = false;
+    });
+  }
 </script>
