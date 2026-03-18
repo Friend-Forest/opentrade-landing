@@ -27,12 +27,12 @@
             <div class="terminal-dot" style="background:#FF5F56"></div>
             <div class="terminal-dot" style="background:#FFBD2E"></div>
             <div class="terminal-dot" style="background:#27C93F"></div>
-            <span style="margin-left:0.5rem;font-family:var(--font-mono);font-size:0.75rem;color:#8090b0">opentrade-agent v2.4.1</span>
+            <span style="margin-left:0.5rem;font-family:var(--font-mono);font-size:0.75rem;color:var(--text-secondary)">opentrade-agent v2.4.1</span>
           </div>
           <div class="terminal-body" id="terminal-output">
             <div class="terminal-line">
               <span class="terminal-prompt"></span>
-              <span id="typing-text"></span><span class="animate-blink" style="color:#00F0FF">█</span>
+              <span id="typing-text"></span><span class="animate-blink" style="color:#ffffff">█</span>
             </div>
             <div id="terminal-history"></div>
           </div>
@@ -46,34 +46,34 @@
       </div>
       <div class="hero-float-card float-2" id="float-card-2">
         <div class="float-label">Active Agents</div>
-        <div class="float-value" style="color:#8B5CF6">1,247</div>
+        <div class="float-value" style="color:#888888">1,247</div>
       </div>
     </div>
 
     <!-- Right: Copy -->
     <div class="hero-copy">
       <div class="reveal-mask">
-        <div class="section-label reveal-text" id="hero-label-reveal">AI Trading Platform</div>
+        <div class="section-label reveal-text" id="hero-label-reveal">AI-Powered Trading Engine</div>
       </div>
 
       <h1 class="hero-heading">
-        <div class="reveal-mask"><div class="reveal-text" id="hero-h1-1"><span class="text-gradient-cyan">Trade Smarter.</span></div></div>
-        <div class="reveal-mask"><div class="reveal-text" id="hero-h1-2">Never Sleep.</div></div>
-        <div class="reveal-mask"><div class="reveal-text" id="hero-h1-3"><span class="glow-green">Never Emote.</span></div></div>
+        <div class="reveal-mask"><div class="reveal-text" id="hero-h1-1"><span class="text-gradient-cyan">One Engine.</span></div></div>
+        <div class="reveal-mask"><div class="reveal-text" id="hero-h1-2">Every Market.</div></div>
+        <div class="reveal-mask"><div class="reveal-text" id="hero-h1-3"><span class="glow-green">24/7.</span></div></div>
       </h1>
 
       <div class="reveal-mask" style="margin-top:1rem">
         <p class="hero-desc reveal-text" id="hero-desc-reveal">
-          Deploy autonomous AI agents that execute trades 24/7 with zero emotional bias.
-          Each agent launches its own token — fees auto-buyback, profits reinforce the flywheel.
-          <span style="color:#00F0FF;font-family:var(--font-mono)">Pure alpha. On Base.</span>
+          Deploy autonomous AI agents that trade crypto, stocks, prediction markets, and more.
+          Every trade generates fees that buy back the OpenTrade token. Every profit compounds.
+          <span style="color:#ffffff;font-family:var(--font-pixel);font-size:1.1rem;font-weight:300">The universal AI trader.</span>
         </p>
       </div>
 
       <div class="hero-actions" id="hero-actions">
         <a href="#deploy" class="btn btn-primary" style="font-size:1rem;padding:0.875rem 2rem">
-          Deploy Your Agent
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Create Agent
+          <span class="pixel-icon" style="font-size:1rem">→</span>
         </a>
         <a href="#how-it-works" class="btn btn-secondary" style="font-size:1rem;padding:0.875rem 2rem">
           How It Works
@@ -81,9 +81,9 @@
       </div>
 
       <div class="hero-badges" id="hero-badges">
-        <span class="badge badge-cyan">Base Chain</span>
+        <span class="badge badge-cyan">Any Market</span>
         <span class="badge badge-green">Non-Custodial</span>
-        <span class="badge badge-purple">Agent Tokens</span>
+        <span class="badge badge-purple">Plugin Ecosystem</span>
       </div>
     </div>
   </div>
@@ -152,7 +152,7 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-top: 64px;
+    padding-top: 80px;
     overflow: hidden;
   }
 
@@ -172,10 +172,7 @@
   .hero-gradient {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(0,240,255,0.06) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(139,92,246,0.08) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 10%, rgba(0,255,136,0.04) 0%, transparent 50%);
+    background: transparent;
   }
 
   .hero-canvas {
@@ -197,7 +194,7 @@
   .orb-1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(0,240,255,0.08), transparent 70%);
+    background: transparent;
     top: -100px;
     right: -100px;
   }
@@ -205,7 +202,7 @@
   .orb-2 {
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(139,92,246,0.1), transparent 70%);
+    background: transparent;
     bottom: 100px;
     left: -50px;
   }
@@ -213,7 +210,7 @@
   .orb-3 {
     width: 300px;
     height: 300px;
-    background: radial-gradient(circle, rgba(0,255,136,0.06), transparent 70%);
+    background: transparent;
     top: 40%;
     left: 30%;
   }
@@ -223,7 +220,7 @@
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(0,240,255,0.3), transparent);
+    background: rgba(255, 255, 255, 0.08);
     animation: scan-line 8s linear infinite;
     pointer-events: none;
     z-index: 1;
@@ -262,7 +259,7 @@
 
   #terminal-history .hist-prompt::before {
     content: '$ ';
-    color: #00FF88;
+    color: #00FF00;
   }
 
   #terminal-history .hist-output {
@@ -272,7 +269,7 @@
   }
 
   #terminal-history .hist-success {
-    color: #00FF88;
+    color: #00FF00;
     margin-left: 1rem;
     display: block;
   }
@@ -286,11 +283,10 @@
   /* Float cards */
   .hero-float-card {
     position: absolute;
-    background: rgba(13, 20, 36, 0.9);
-    border: 1px solid rgba(0, 240, 255, 0.3);
-    border-radius: 8px;
+    background: rgba(17, 17, 17, 0.95);
+    border: 1px solid #333333;
+    border-radius: 0;
     padding: 0.75rem 1rem;
-    backdrop-filter: blur(10px);
     animation: float 3s ease-in-out infinite;
     opacity: 0;
     will-change: transform, opacity;
@@ -331,10 +327,11 @@
   }
 
   .hero-heading {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    font-family: var(--font-pixel);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
   }
 
   .hero-desc {
@@ -363,8 +360,8 @@
   .ticker-wrapper {
     position: relative;
     z-index: 3;
-    border-top: 1px solid rgba(0, 240, 255, 0.15);
-    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid #222222;
+    background: rgba(0, 0, 0, 0.8);
     overflow: hidden;
     height: 44px;
     display: flex;
@@ -391,7 +388,7 @@
   }
 
   .ticker-sep {
-    color: #3d4f70;
+    color: var(--text-muted);
     font-size: 1rem;
   }
 
@@ -535,10 +532,10 @@
     {
       cmd: 'opentrade agent create --strategy momentum --risk 0.02',
       outputs: [
-        { text: 'Initializing agent "Alpha-7"...', type: 'output' },
-        { text: 'Deploying token contract on Base...', type: 'output' },
-        { text: '✓ Token deployed: 0x1a2b...3c4d', type: 'success' },
-        { text: '✓ Agent active. Monitoring 47 pairs.', type: 'success' },
+        { text: 'Generating wallet...', type: 'output' },
+        { text: '✓ Wallet created: 0x8f2a...c4d1', type: 'success' },
+        { text: '✓ Agent "Alpha-7" initialized', type: 'success' },
+        { text: '✓ Monitoring crypto, stocks, prediction markets', type: 'success' },
       ]
     },
     {
@@ -547,16 +544,16 @@
         { text: '━━━━━━━━━━ Performance Report ━━━━━━━━━━', type: 'info' },
         { text: '7d PnL: +$12,847 (+23.4%)', type: 'success' },
         { text: 'Trades: 342 | Win Rate: 67.8%', type: 'output' },
-        { text: 'Buyback triggered: 3 times ($4.2k)', type: 'info' },
+        { text: 'Fees generated: $1,842 → 80% to $OT buyback', type: 'info' },
       ]
     },
     {
-      cmd: 'opentrade buyback --agent Alpha-7 --trigger profit',
+      cmd: 'opentrade launch-token --agent Alpha-7',
       outputs: [
-        { text: 'Profit threshold reached: $8,400', type: 'output' },
-        { text: 'Executing token buyback...', type: 'output' },
-        { text: '✓ Bought back 12,000 ALPHA7 tokens', type: 'success' },
-        { text: '✓ Token price: $0.042 (+18.3%)', type: 'success' },
+        { text: 'Deploying agent token ALPHA7...', type: 'output' },
+        { text: '✓ Token live. Trading fees: 80% compounds, 20% → $OT', type: 'success' },
+        { text: '✓ Profit buyback: 15% of gains → ALPHA7 buyback', type: 'success' },
+        { text: '✓ Flywheel active. All systems green.', type: 'success' },
       ]
     }
   ];
@@ -574,7 +571,7 @@
     const line = document.createElement('div');
     if (type === 'cmd') {
       line.className = 'hist-prompt';
-      line.style.color = '#e0e8ff';
+      line.style.color = 'var(--text-primary)';
     } else if (type === 'success') {
       line.className = 'hist-success';
     } else if (type === 'info') {
@@ -640,7 +637,8 @@
     }
 
     const particles: Particle[] = [];
-    const COLORS = ['#00F0FF', '#00FF88', '#8B5CF6'];
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const COLORS = isLight ? ['#000000', '#888888', '#aaaaaa'] : ['#ffffff', '#888888', '#555555'];
 
     for (let i = 0; i < 70; i++) {
       particles.push({
@@ -684,7 +682,7 @@
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = '#00F0FF';
+            ctx.strokeStyle = isLight ? '#cccccc' : '#444444';
             ctx.globalAlpha = (1 - dist / 100) * 0.12;
             ctx.lineWidth = 0.5;
             ctx.stroke();

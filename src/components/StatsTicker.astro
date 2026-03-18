@@ -9,7 +9,7 @@
       <div class="stats-grid">
         <div class="stat-item" data-target="284700000" data-prefix="$" data-suffix="" data-decimals="0">
           <div class="stat-value" id="stat-volume">$0</div>
-          <div class="stat-label">Total Trading Volume</div>
+          <div class="stat-label">Total Volume Traded</div>
           <div class="stat-change positive">+12.4% <span>this week</span></div>
           <div class="stat-progress-bar">
             <div class="stat-progress-fill stat-progress-1"></div>
@@ -18,7 +18,7 @@
         <div class="stat-divider"></div>
         <div class="stat-item" data-target="1247" data-prefix="" data-suffix="">
           <div class="stat-value" id="stat-agents">0</div>
-          <div class="stat-label">Active AI Agents</div>
+          <div class="stat-label">Active Agents</div>
           <div class="stat-change positive">+89 <span>new today</span></div>
           <div class="stat-progress-bar">
             <div class="stat-progress-fill stat-progress-2"></div>
@@ -36,7 +36,7 @@
         <div class="stat-divider"></div>
         <div class="stat-item" data-target="4800000" data-prefix="$" data-suffix="" data-decimals="0">
           <div class="stat-value" id="stat-buyback">$0</div>
-          <div class="stat-label">Total Buybacks</div>
+          <div class="stat-label">$OT Bought Back</div>
           <div class="stat-change positive">+$840k <span>this week</span></div>
           <div class="stat-progress-bar">
             <div class="stat-progress-fill stat-progress-4"></div>
@@ -54,9 +54,9 @@
   }
 
   .stats-bar {
-    background: linear-gradient(180deg, var(--bg-surface) 0%, var(--bg-card) 100%);
-    border-top: 1px solid rgba(0, 240, 255, 0.15);
-    border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+    background: var(--bg-surface);
+    border-top: 2px solid var(--bg-border);
+    border-bottom: 2px solid var(--bg-border);
     padding: 3rem 0;
     position: relative;
     overflow: hidden;
@@ -75,8 +75,7 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    height: 0;
   }
 
   .stats-grid {
@@ -95,14 +94,13 @@
   }
 
   .stat-value {
-    font-family: var(--font-mono);
+    font-family: var(--font-pixel);
     font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 700;
+    font-weight: 300;
     color: var(--cyan);
-    text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
     line-height: 1;
     margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     will-change: contents;
   }
 
@@ -149,9 +147,9 @@
   .stat-progress-4 { background: var(--yellow, #FFE600); box-shadow: 0 0 6px #FFE600; }
 
   .stat-divider {
-    width: 1px;
+    width: 2px;
     height: 60px;
-    background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.2), transparent);
+    background: var(--bg-border);
     margin: 0 auto;
   }
 

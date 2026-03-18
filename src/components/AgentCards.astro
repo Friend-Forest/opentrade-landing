@@ -107,7 +107,7 @@ const PEEK = 44;
               <div class="agent-top-row">
                 <div class="agent-number mono">{String(i + 1).padStart(2, '0')}</div>
                 <div class="agent-header-info">
-                  <div class="agent-avatar" style={`background: linear-gradient(135deg, ${agent.color}33, ${agent.color}11); border: 1px solid ${agent.color}55`}>
+                  <div class="agent-avatar" style={`background: ${agent.color}18; border: 2px solid ${agent.color}55`}>
                     <span class="agent-initial mono">{agent.name[0]}</span>
                   </div>
                   <div>
@@ -189,7 +189,7 @@ const PEEK = 44;
     background: var(--bg-base);
     overflow: hidden;
     box-sizing: border-box;
-    padding-top: var(--nav-height, 64px);
+    padding-top: var(--nav-height, 80px);
   }
 
   .agents-section-header {
@@ -211,11 +211,10 @@ const PEEK = 44;
     right: 1.5rem;
     width: auto;
     height: calc(100% - 1rem - var(--peek-top, 0px));
-    border-radius: 16px 16px 0 0;
-    background: #0c0c0f;
-    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 0;
+    background: #111111;
+    border: 1px solid #222222;
     border-bottom: none;
-    box-shadow: 0 -4px 30px rgba(0,0,0,0.6);
     will-change: transform;
   }
 
@@ -224,7 +223,7 @@ const PEEK = 44;
     display: flex;
     align-items: stretch;
     overflow: hidden;
-    border-radius: 16px 16px 0 0;
+    border-radius: 0;
   }
 
   .agent-card-content {
@@ -260,7 +259,7 @@ const PEEK = 44;
   .agent-avatar {
     width: 48px;
     height: 48px;
-    border-radius: 12px;
+    border-radius: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -274,10 +273,11 @@ const PEEK = 44;
   }
 
   .agent-name {
-    font-weight: 700;
+    font-family: var(--font-pixel);
+    font-weight: 300;
     font-size: 1.5rem;
     text-transform: uppercase;
-    color: var(--color-white, #fff);
+    color: #ffffff;
     margin-bottom: 0.3rem;
   }
 

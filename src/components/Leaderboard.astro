@@ -26,7 +26,7 @@ const rows = [
         </div>
         <div class="lb-live">
           <span class="live-dot"></span>
-          <span class="mono" style="font-size:0.75rem;color:#8090b0">LIVE</span>
+          <span class="mono" style="font-size:0.75rem;color:var(--text-secondary)">LIVE</span>
         </div>
       </div>
     </div>
@@ -40,11 +40,11 @@ const rows = [
           <div class="lbc-header">
             <div class="lbc-rank">
               {row.rank <= 3 ? (
-                <span class="rank-medal" style={`color: ${row.rank === 1 ? '#FFD700' : row.rank === 2 ? '#C0C0C0' : '#CD7F32'}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                <span class="rank-medal pixel-icon" style={`font-size:1.3rem;color: ${row.rank === 1 ? '#FFD700' : row.rank === 2 ? '#C0C0C0' : '#CD7F32'}`}>
+                  {row.rank === 1 ? '★' : row.rank === 2 ? '★' : '★'}
                 </span>
               ) : (
-                <span class="mono rank-num" style="color:#3d4f70">#{row.rank}</span>
+                <span class="mono rank-num" style="color:var(--text-muted)">#{row.rank}</span>
               )}
             </div>
             <div class="lbc-agent">
@@ -65,7 +65,7 @@ const rows = [
             </div>
             <div class="lbc-stat">
               <div class="lbc-stat-label">Win Rate</div>
-              <div class="lbc-stat-val mono" style="color:var(--cyan)">{row.winRate}</div>
+              <div class="lbc-stat-val mono" style="color:#ffffff">{row.winRate}</div>
             </div>
             <div class="lbc-stat">
               <div class="lbc-stat-label">Trades</div>
@@ -95,7 +95,7 @@ const rows = [
     background: var(--bg-base);
     overflow: hidden;
     box-sizing: border-box;
-    padding-top: var(--nav-height, 64px);
+    padding-top: var(--nav-height, 80px);
     position: relative;
     z-index: 1;
   }
@@ -149,7 +149,7 @@ const rows = [
   }
 
   .lb-filter-btn.active {
-    background: rgba(0, 240, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--cyan);
   }
 
@@ -182,12 +182,12 @@ const rows = [
     padding: 2rem;
     height: 100%;
     align-items: center;
-    /* Width is set dynamically — cards overflow and get scrolled horizontally */
+    /* Width is set dynamically. cards overflow and get scrolled horizontally */
     width: max-content;
     will-change: transform;
   }
 
-  /* Individual leaderboard cards — ~50vw wide like Avax HowItWorks panels */
+  /* Individual leaderboard cards. ~50vw wide like Avax HowItWorks panels */
   .lb-card {
     flex-shrink: 0;
     width: 50vw;
@@ -201,12 +201,11 @@ const rows = [
     transform: translateY(30px);
     will-change: transform, opacity;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 14px;
+    border-radius: 0;
   }
 
   .lb-card:hover {
-    border-color: rgba(0, 240, 255, 0.4);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(0, 240, 255, 0.1);
+    border-color: var(--cyan);
   }
 
   /* Card header */
@@ -321,7 +320,7 @@ const rows = [
       ease: 'none',
       duration: 1,
     });
-    // Dead time — leaderboard stays pinned but nothing moves
+    // Dead time. leaderboard stays pinned but nothing moves
     tl.to({}, { duration: 0.6 });
 
     ScrollTrigger.create({
