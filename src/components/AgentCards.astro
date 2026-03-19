@@ -1,88 +1,52 @@
 ---
-const agents = [
+const plugins = [
   {
-    name: "Alpha-7",
-    strategy: "Momentum",
-    pnl7d: "+$12,847",
-    pnlPct: "+23.4%",
-    positive: true,
-    tvl: "$84.2k",
-    winRate: "71%",
-    trades: 342,
-    token: "ALPHA7",
-    tokenPrice: "$0.042",
-    color: "#00F0FF",
-    sparkline: [40, 45, 42, 55, 60, 58, 72, 68, 80, 85, 82, 95],
+    name: "Oracle: DexScreener",
+    category: "Data Feed",
+    desc: "Real-time token prices, liquidity, and volume across 80+ DEXs. Auto-discovers new pairs.",
+    stats: { calls: "2.4M/day", latency: "< 50ms", uptime: "99.98%", chains: "12" },
+    color: "#ffffff",
+    examples: ["Price feeds", "Volume data", "Liquidity depth", "New pair alerts"],
   },
   {
-    name: "Mochi-9",
-    strategy: "Sentiment",
-    pnl7d: "+$8,291",
-    pnlPct: "+18.9%",
-    positive: true,
-    tvl: "$52.1k",
-    winRate: "65%",
-    trades: 218,
-    token: "MOCHI9",
-    tokenPrice: "$0.018",
-    color: "#00FF88",
-    sparkline: [30, 35, 40, 38, 55, 50, 65, 70, 68, 85, 90, 88],
+    name: "Oracle: X Sentiment",
+    category: "Sentiment",
+    desc: "Scrapes X/Twitter for token mentions, whale alerts, and community sentiment. Feeds directly into agent reasoning.",
+    stats: { calls: "840K/day", latency: "< 200ms", uptime: "99.7%", sources: "X, Reddit" },
+    color: "#ffffff",
+    examples: ["Whale tracking", "Sentiment score", "Trending tokens", "News alerts"],
   },
   {
-    name: "Zeta-3",
-    strategy: "Arbitrage",
-    pnl7d: "-$1,204",
-    pnlPct: "-2.8%",
-    positive: false,
-    tvl: "$31.7k",
-    winRate: "58%",
-    trades: 891,
-    token: "ZETA3",
-    tokenPrice: "$0.009",
-    color: "#FF394A",
-    sparkline: [70, 68, 72, 65, 60, 55, 58, 52, 48, 50, 47, 45],
+    name: "Trade: Uniswap",
+    category: "DEX Execution",
+    desc: "Execute swaps on Uniswap V3 across Ethereum, Base, Arbitrum, and Polygon. Optimal routing built in.",
+    stats: { calls: "180K/day", latency: "< 2s", uptime: "99.95%", chains: "4" },
+    color: "#ffffff",
+    examples: ["Token swaps", "Limit orders", "Multi-hop routing", "Slippage control"],
   },
   {
-    name: "Nexus-1",
-    strategy: "Mean Reversion",
-    pnl7d: "+$19,440",
-    pnlPct: "+41.2%",
-    positive: true,
-    tvl: "$121.8k",
-    winRate: "74%",
-    trades: 156,
-    token: "NEX1",
-    tokenPrice: "$0.091",
-    color: "#8B5CF6",
-    sparkline: [50, 60, 55, 75, 80, 78, 90, 95, 100, 105, 110, 118],
+    name: "Trade: Polymarket",
+    category: "Prediction Markets",
+    desc: "Place bets on real-world events. AI analyzes probability vs. market odds and finds edges automatically.",
+    stats: { calls: "45K/day", latency: "< 1s", uptime: "99.9%", markets: "500+" },
+    color: "#ffffff",
+    examples: ["Event betting", "Odds analysis", "Portfolio hedging", "Auto-rebalance"],
   },
   {
-    name: "Byte-12",
-    strategy: "On-Chain Intel",
-    pnl7d: "+$6,102",
-    pnlPct: "+15.3%",
-    positive: true,
-    tvl: "$48.3k",
-    winRate: "68%",
-    trades: 274,
-    token: "BYTE12",
-    tokenPrice: "$0.031",
-    color: "#FFE600",
-    sparkline: [45, 48, 52, 50, 60, 65, 63, 70, 75, 72, 80, 85],
+    name: "Agent: Claude",
+    category: "AI Brain",
+    desc: "Anthropic Claude as the trading brain. Autonomous multi-step reasoning, tool discovery, and risk management.",
+    stats: { calls: "1.2M/day", latency: "< 3s", uptime: "99.9%", models: "3" },
+    color: "#ffffff",
+    examples: ["Strategy reasoning", "Risk assessment", "Tool selection", "Trade decisions"],
   },
   {
-    name: "Oracle-X",
-    strategy: "ML Prediction",
-    pnl7d: "+$24,810",
-    pnlPct: "+52.7%",
-    positive: true,
-    tvl: "$198.4k",
-    winRate: "79%",
-    trades: 89,
-    token: "ORACLX",
-    tokenPrice: "$0.142",
-    color: "#FF6B00",
-    sparkline: [60, 70, 75, 80, 85, 95, 100, 105, 115, 125, 130, 140],
+    name: "State: Redis",
+    category: "Storage",
+    desc: "High-performance state management. Trade history, portfolio tracking, and full audit trail at microsecond speed.",
+    stats: { calls: "8.1M/day", latency: "< 1ms", uptime: "99.99%", storage: "Persistent" },
+    color: "#ffffff",
+    examples: ["Trade history", "Position tracking", "Audit trail", "Session state"],
   },
 ];
 
@@ -90,89 +54,44 @@ const PEEK = 44;
 ---
 <section class="agents-section" id="agents">
   <div class="agents-section-header">
-    <div class="section-label">Live Performance</div>
-    <h2 class="section-title">Top Trading Agents</h2>
+    <div class="section-label">Plugin Marketplace</div>
+    <h2 class="section-title">Browse Plugins</h2>
   </div>
 
   <div class="agents-stack">
-      {agents.map((agent, i) => (
+      {plugins.map((plugin, i) => (
         <div
           class="agent-card"
           data-index={i}
-          style={`--agent-color: ${agent.color}; --stack-index: ${i}; --peek-top: ${i * PEEK}px`}
+          style={`--agent-color: ${plugin.color}; --stack-index: ${i}; --peek-top: ${i * PEEK}px`}
         >
           <div class="agent-card-inner">
             <div class="agent-card-content">
-              <!-- Top row: number + name + PnL -->
               <div class="agent-top-row">
                 <div class="agent-number mono">{String(i + 1).padStart(2, '0')}</div>
                 <div class="agent-header-info">
-                  <div class="agent-avatar" style={`background: ${agent.color}18; border: 2px solid ${agent.color}55`}>
-                    <span class="agent-initial mono">{agent.name[0]}</span>
-                  </div>
                   <div>
-                    <div class="agent-name">{agent.name}</div>
-                    <div class="badge" style={`background: ${agent.color}18; color: ${agent.color}; border: 1px solid ${agent.color}40`}>{agent.strategy}</div>
+                    <div class="agent-name">{plugin.name}</div>
+                    <div class="badge" style={`background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--bg-border)`}>{plugin.category}</div>
                   </div>
                 </div>
-                <div class="agent-pnl">
-                  <div class={`pnl-value mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnl7d}</div>
-                  <div class={`pnl-pct mono ${agent.positive ? 'positive' : 'negative'}`}>{agent.pnlPct}</div>
-                </div>
               </div>
 
-              <!-- Chart -->
-              <div class="agent-chart">
-                <svg class="sparkline" viewBox={`0 0 ${(agent.sparkline.length - 1) * 20} 50`} preserveAspectRatio="none">
-                  <defs>
-                    <linearGradient id={`grad-${i}`} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color={agent.color} stop-opacity="0.3"/>
-                      <stop offset="100%" stop-color={agent.color} stop-opacity="0"/>
-                    </linearGradient>
-                  </defs>
-                  <path
-                    d={`M0,${50 - (agent.sparkline[0] / 140) * 50} ${agent.sparkline.map((v, idx) => `L${idx * 20},${50 - (v / 140) * 50}`).join(' ')} L${(agent.sparkline.length - 1) * 20},50 L0,50 Z`}
-                    fill={`url(#grad-${i})`}
-                  />
-                  <polyline
-                    points={agent.sparkline.map((v, idx) => `${idx * 20},${50 - (v / 140) * 50}`).join(' ')}
-                    fill="none"
-                    stroke={agent.color}
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <circle
-                    cx={(agent.sparkline.length - 1) * 20}
-                    cy={50 - (agent.sparkline[agent.sparkline.length - 1] / 140) * 50}
-                    r="3"
-                    fill={agent.color}
-                  />
-                </svg>
+              <p style="font-size:0.95rem;line-height:1.7;color:var(--text-secondary);margin:0.5rem 0 1rem">{plugin.desc}</p>
+
+              <div style="display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1rem">
+                {plugin.examples.map((ex) => (
+                  <span style="font-family:var(--font-mono);font-size:0.7rem;padding:0.2rem 0.6rem;background:rgba(255,255,255,0.03);border:1px solid var(--bg-border);color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.05em">{ex}</span>
+                ))}
               </div>
 
-              <!-- Stats row -->
               <div class="agent-stats-row">
-                <div class="stat-mini">
-                  <div class="stat-mini-label">TVL</div>
-                  <div class="stat-mini-value mono">{agent.tvl}</div>
-                </div>
-                <div class="stat-mini">
-                  <div class="stat-mini-label">Win Rate</div>
-                  <div class="stat-mini-value mono">{agent.winRate}</div>
-                </div>
-                <div class="stat-mini">
-                  <div class="stat-mini-label">Trades</div>
-                  <div class="stat-mini-value mono">{agent.trades}</div>
-                </div>
-                <div class="stat-mini">
-                  <div class="stat-mini-label">Token</div>
-                  <div class="stat-mini-value mono">{agent.token}</div>
-                </div>
-                <div class="stat-mini">
-                  <div class="stat-mini-label">Price</div>
-                  <div class="stat-mini-value mono">{agent.tokenPrice}</div>
-                </div>
+                {Object.entries(plugin.stats).map(([key, val]) => (
+                  <div class="stat-mini">
+                    <div class="stat-mini-label">{key}</div>
+                    <div class="stat-mini-value mono">{val}</div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

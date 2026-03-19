@@ -1,0 +1,122 @@
+---
+---
+<section class="logos-section">
+  <div class="container">
+    <div class="logos-label">Plugged Into The Best</div>
+  </div>
+  <div class="logos-track-wrapper">
+    <div class="logos-track" id="logos-track">
+      <!-- First set -->
+      <div class="logo-item"><img src="/logos/anthropic.svg" alt="Anthropic" /><span>Anthropic</span></div>
+      <div class="logo-item"><img src="/logos/openai.svg" alt="OpenAI" /><span>OpenAI</span></div>
+      <div class="logo-item"><img src="/logos/google.svg" alt="Google" /><span>Google</span></div>
+      <div class="logo-item"><img src="/logos/polymarket.svg" alt="Polymarket" /><span>Polymarket</span></div>
+      <div class="logo-item"><img src="/logos/uniswap.svg" alt="Uniswap" /><span>Uniswap</span></div>
+      <div class="logo-item"><img src="/logos/dexscreener.png" alt="DexScreener" /><span>DexScreener</span></div>
+      <div class="logo-item"><img src="/logos/coinbase.svg" alt="Coinbase" /><span>Coinbase</span></div>
+      <div class="logo-item"><img src="/logos/jupiter.svg" alt="Jupiter" /><span>Jupiter</span></div>
+      <div class="logo-item"><img src="/logos/coingecko.svg" alt="CoinGecko" /><span>CoinGecko</span></div>
+      <div class="logo-item"><img src="/logos/ethereum.svg" alt="Ethereum" /><span>Ethereum</span></div>
+      <div class="logo-item"><img src="/logos/solana.svg" alt="Solana" /><span>Solana</span></div>
+      <div class="logo-item"><img src="/logos/base.svg" alt="Base" /><span>Base</span></div>
+      <div class="logo-item"><img src="/logos/x.svg" alt="X" /><span>X / Twitter</span></div>
+      <div class="logo-item"><img src="/logos/discord.svg" alt="Discord" /><span>Discord</span></div>
+      <!-- Duplicate for seamless loop -->
+      <div class="logo-item"><img src="/logos/anthropic.svg" alt="Anthropic" /><span>Anthropic</span></div>
+      <div class="logo-item"><img src="/logos/openai.svg" alt="OpenAI" /><span>OpenAI</span></div>
+      <div class="logo-item"><img src="/logos/google.svg" alt="Google" /><span>Google</span></div>
+      <div class="logo-item"><img src="/logos/polymarket.svg" alt="Polymarket" /><span>Polymarket</span></div>
+      <div class="logo-item"><img src="/logos/uniswap.svg" alt="Uniswap" /><span>Uniswap</span></div>
+      <div class="logo-item"><img src="/logos/dexscreener.png" alt="DexScreener" /><span>DexScreener</span></div>
+      <div class="logo-item"><img src="/logos/coinbase.svg" alt="Coinbase" /><span>Coinbase</span></div>
+      <div class="logo-item"><img src="/logos/jupiter.svg" alt="Jupiter" /><span>Jupiter</span></div>
+      <div class="logo-item"><img src="/logos/coingecko.svg" alt="CoinGecko" /><span>CoinGecko</span></div>
+      <div class="logo-item"><img src="/logos/ethereum.svg" alt="Ethereum" /><span>Ethereum</span></div>
+      <div class="logo-item"><img src="/logos/solana.svg" alt="Solana" /><span>Solana</span></div>
+      <div class="logo-item"><img src="/logos/base.svg" alt="Base" /><span>Base</span></div>
+      <div class="logo-item"><img src="/logos/x.svg" alt="X" /><span>X / Twitter</span></div>
+      <div class="logo-item"><img src="/logos/discord.svg" alt="Discord" /><span>Discord</span></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .logos-section {
+    padding: var(--space-xl) 0;
+    border-top: 1px solid var(--bg-border);
+    border-bottom: 1px solid var(--bg-border);
+    background: var(--bg-surface);
+    overflow: hidden;
+  }
+
+  .logos-label {
+    font-family: var(--font-pixel);
+    font-weight: 300;
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .logos-track-wrapper {
+    overflow: hidden;
+    width: 100%;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+
+  .logos-track {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    white-space: nowrap;
+    animation: scroll-logos 40s linear infinite;
+    width: max-content;
+  }
+
+  .logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+
+  .logo-item:hover {
+    opacity: 1;
+  }
+
+  .logo-item img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    /* Make SVGs visible in dark mode */
+    filter: invert(1) brightness(1.5);
+  }
+
+  .logo-item span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  :global([data-theme="light"]) .logo-item img {
+    filter: none;
+  }
+
+  @keyframes scroll-logos {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 768px) {
+    .logos-track { gap: 2.5rem; }
+    .logo-item img { width: 28px; height: 28px; }
+  }
+</style>
