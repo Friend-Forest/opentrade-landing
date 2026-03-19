@@ -4,6 +4,7 @@
   <div class="nav-inner container">
     <!-- Logo -->
     <a href="/" class="nav-logo">
+      <img src="/opentrade-icon-current.svg" alt="" class="nav-icon" />
       <span class="honk-logo">OpenTrade</span>
     </a>
 
@@ -60,7 +61,18 @@
   .nav-logo {
     display: flex;
     align-items: center;
+    gap: 0.6rem;
     text-decoration: none;
+  }
+
+  .nav-icon {
+    width: 20px;
+    height: 20px;
+    filter: invert(1);
+  }
+
+  :global([data-theme="light"]) .nav-icon {
+    filter: none;
   }
 
   .honk-logo {
