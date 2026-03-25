@@ -95,9 +95,8 @@
               <div class="step-number mono" style="color:#888888">03</div>
               <h3 class="step-title">Launch Your Token</h3>
               <p class="step-desc">
-                Once your agent proves itself, launch an agent token. 80% of trading fees compound back into the agent's wallet. 20% buys back $OT.
-                5–25% of all profits trigger buybacks of your agent token.
-                Performance creates price. Price attracts capital. Capital compounds performance.
+                Launch an agent token. 80% of fees compound the agent's wallet, 20% buys back $OT.
+                5–25% of profits trigger agent token buybacks.
               </p>
               <div class="flywheel">
                 <div class="fw-step">
@@ -147,12 +146,6 @@
       </div>
     </div>
 
-    <!-- Step dots navigation -->
-    <div class="how-dots" id="how-dots">
-      <button class="how-dot active" data-step="0"></button>
-      <button class="how-dot" data-step="1"></button>
-      <button class="how-dot" data-step="2"></button>
-    </div>
   </div>
 </section>
 
@@ -402,34 +395,6 @@
     text-transform: uppercase;
   }
 
-  /* Dots */
-  .how-dots {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 0.75rem;
-    z-index: 10;
-  }
-
-  .how-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--bg-border);
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .how-dot.active {
-    background: var(--cyan);
-    box-shadow: 0 0 8px var(--cyan);
-    width: 24px;
-    border-radius: 4px;
-  }
-
   @media (max-width: 768px) {
     .how-card-inner { padding: 2rem; }
     .step-title { font-size: 1.4rem; }
@@ -458,11 +423,6 @@
   // ─── Horizontal scroll pinned to section ────────────────
   const section = document.querySelector('.how-section') as HTMLElement;
   const track = document.getElementById('how-cards-track');
-  const dots = document.querySelectorAll('.how-dot');
-
-  function updateDots(idx: number) {
-    dots.forEach((d, i) => d.classList.toggle('active', i === idx));
-  }
 
   if (section && track) {
     // Build a tween that slides the track from card 1 to card 3
@@ -480,22 +440,9 @@
       scrub: 1,
       animation: scrollTween,
       onUpdate: (self) => {
-        const stepIdx = Math.min(2, Math.floor(self.progress * 3));
-        updateDots(stepIdx);
+        // Dots removed
       }
     });
   }
 
-  // Dot click navigation
-  dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      if (!section) return;
-      const st = ScrollTrigger.getAll().find(t => t.trigger === section);
-      if (st) {
-        const targetProgress = i / 2.5;
-        const targetScroll = st.start + (st.end - st.start) * targetProgress;
-        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
-      }
-    });
-  });
 </script>

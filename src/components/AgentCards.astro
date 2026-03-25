@@ -109,6 +109,7 @@ const PEEK = 44;
     overflow: hidden;
     box-sizing: border-box;
     padding-top: var(--nav-height, 80px);
+    margin-bottom: 35vh;
   }
 
   .agents-section-header {
@@ -320,17 +321,16 @@ const PEEK = 44;
     const tl = gsap.timeline();
     cards.forEach((card, i) => {
       if (i === 0) return;
-      tl.to(card, { yPercent: 0, duration: 1, ease: 'power2.out' });
-      tl.to({}, { duration: 0.15 });
+      tl.to(card, { yPercent: 0, duration: 0.3, ease: 'power1.inOut' });
     });
 
     ScrollTrigger.create({
       trigger: section,
       start: 'top top',
-      end: () => `+=${(cards.length - 1) * 100}vh`,
+      end: () => `+=${(cards.length) * 1200}vh`,
       pin: true,
       pinSpacing: true,
-      scrub: 0.8,
+      scrub: 0.2,
       animation: tl,
     });
   }
